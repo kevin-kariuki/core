@@ -26,7 +26,3 @@
 {%- block site_name %}
 <a href="{{ nav.homepage.url|url }}" class="logo"><img src="/img/header.svg" alt="{{ config.site_name }}" /></a>
 {%- endblock %}
-
-{% macro since(version) -%}
-    <span class="since">since {{version}}</span>
-{%- endmacro %}
