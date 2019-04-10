@@ -1,4 +1,4 @@
-package com.opsbears.cscanner.s3;
+package com.opsbears.cscanner.objectstorage;
 
 import com.opsbears.cscanner.core.Plugin;
 import com.opsbears.cscanner.core.RuleBuilder;
@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-public class S3Plugin implements Plugin {
+public class ObjectStoragePlugin implements Plugin {
     @Override
     public List<RuleBuilder<?, ?, ?>> getSupportedRules() {
         //noinspection unchecked
         return Arrays.asList(
-            new S3PublicReadProhibitedRuleBuilder()
+            new ObjectStoragePublicReadProhibitedRuleBuilder()
         );
     }
 }

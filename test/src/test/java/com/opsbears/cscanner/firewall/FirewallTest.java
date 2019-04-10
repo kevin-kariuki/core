@@ -7,7 +7,7 @@ import com.opsbears.cscanner.core.ScannerCore;
 import com.opsbears.cscanner.core.ScannerCoreFactory;
 import com.opsbears.cscanner.digitalocean.DigitalOceanTestFirewallClientFactory;
 import com.opsbears.cscanner.exoscale.ExoscaleTestFirewallClientFactory;
-import com.opsbears.cscanner.s3.S3TestClientSupplier;
+import com.opsbears.cscanner.objectstorage.ObjectStorageTestClientSupplier;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @ParametersAreNonnullByDefault
 public class FirewallTest {
     @SuppressWarnings("unchecked")
-    private static List<Class<TestFirewallClientFactory>> factories = Arrays.<Class<S3TestClientSupplier>>asList(
+    private static List<Class<TestFirewallClientFactory>> factories = Arrays.<Class<ObjectStorageTestClientSupplier>>asList(
         new Class[]{
             AWSTestFirewallClientFactory.class,
             DigitalOceanTestFirewallClientFactory.class,

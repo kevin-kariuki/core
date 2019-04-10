@@ -1,14 +1,14 @@
 ---
-title: S3 rules
+title: Object Storage rules
 ---
 
-# S3 Rules
+# Object Storage Rules
 
-This section details the rules relevant to AWS S3 and compatible object storages.
+This section details the rules relevant to object storages, such as Amazon S3.
 
-## Do not permit an S3 bucket to be public
+## Do not permit an object storage bucket to be public
 
-This rule checks S3 bucket ACLs so that they are not public. The configuration goes like this:
+This rule checks object storage bucket ACLs so that they are not public. The configuration goes like this:
 
 ```yaml
 - type: S3_PUBLIC_READ_PROHIBITED
@@ -23,9 +23,6 @@ This rule checks S3 bucket ACLs so that they are not public. The configuration g
 
 This option accepts a regular expression to match against the bucket name. If include is specified, only
 the security groups with the specified name will be considered.
-
-Note that each cloud provider implements buckets differently. The [AWS provider](../providers/aws.md), for example,
-will return an ARN.
 
 ### exclude
 

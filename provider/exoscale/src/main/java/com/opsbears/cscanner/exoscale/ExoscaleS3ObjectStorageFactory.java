@@ -3,22 +3,18 @@ package com.opsbears.cscanner.exoscale;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.RegionImpl;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.opsbears.cscanner.s3.S3Factory;
+import com.opsbears.cscanner.objectstorage.S3Factory;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Collection;
-import java.util.function.Supplier;
 
 @ParametersAreNonnullByDefault
-public class ExoscaleS3ClientSupplier implements S3Factory {
+public class ExoscaleS3ObjectStorageFactory implements S3Factory {
     private final ExoscaleConfiguration configuration;
 
-    public ExoscaleS3ClientSupplier(ExoscaleConfiguration configuration) {
+    public ExoscaleS3ObjectStorageFactory(ExoscaleConfiguration configuration) {
         this.configuration = configuration;
     }
 

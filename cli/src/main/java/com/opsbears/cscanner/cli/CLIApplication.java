@@ -5,14 +5,13 @@ import com.opsbears.cscanner.core.RuleResult;
 import com.opsbears.cscanner.core.ScannerCore;
 import com.opsbears.cscanner.exoscale.ExoscalePlugin;
 import com.opsbears.cscanner.firewall.FirewallPlugin;
-import com.opsbears.cscanner.s3.S3Plugin;
+import com.opsbears.cscanner.objectstorage.ObjectStoragePlugin;
 import com.opsbears.cscanner.yaml.YamlPlugin;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.impl.Arguments;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
@@ -107,7 +106,7 @@ public class CLIApplication {
 
         ScannerCore scannerCore = new ScannerCore(Arrays.asList(
             new YamlPlugin(file),
-            new S3Plugin(),
+            new ObjectStoragePlugin(),
             new FirewallPlugin(),
             new AWSPlugin(),
             new ExoscalePlugin()

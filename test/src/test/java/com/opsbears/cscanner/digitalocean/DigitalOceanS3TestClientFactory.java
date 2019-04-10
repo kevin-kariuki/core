@@ -5,8 +5,8 @@ import com.opsbears.cscanner.core.ConnectionConfiguration;
 import com.opsbears.cscanner.core.Plugin;
 import com.opsbears.cscanner.core.ScannerCore;
 import com.opsbears.cscanner.core.ScannerCoreFactory;
-import com.opsbears.cscanner.s3.S3Plugin;
-import com.opsbears.cscanner.s3.S3TestClientSupplier;
+import com.opsbears.cscanner.objectstorage.ObjectStoragePlugin;
+import com.opsbears.cscanner.objectstorage.ObjectStorageTestClientSupplier;
 import com.opsbears.cscanner.test.TestConfigurationLoader;
 import com.opsbears.cscanner.test.TestPlugin;
 
@@ -15,7 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
 @ParametersAreNonnullByDefault
-public class DigitalOceanS3TestClientFactory implements S3TestClientSupplier {
+public class DigitalOceanS3TestClientFactory implements ObjectStorageTestClientSupplier {
     @Nullable
     private static final String apiKey;
     @Nullable
@@ -75,7 +75,7 @@ public class DigitalOceanS3TestClientFactory implements S3TestClientSupplier {
                 ),
                 new DigitalOceanPlugin()
             ));
-            plugins.add(new S3Plugin());
+            plugins.add(new ObjectStoragePlugin());
             return new ScannerCore(plugins);
         };
     }

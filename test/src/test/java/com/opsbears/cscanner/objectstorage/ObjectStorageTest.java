@@ -1,4 +1,4 @@
-package com.opsbears.cscanner.s3;
+package com.opsbears.cscanner.objectstorage;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 import static org.testng.Assert.assertEquals;
 
 @ParametersAreNonnullByDefault
-public class S3Test {
+public class ObjectStorageTest {
     @SuppressWarnings("unchecked")
-    private static List<Class<S3TestClientSupplier>> factories = Arrays.<Class<S3TestClientSupplier>>asList(
+    private static List<Class<ObjectStorageTestClientSupplier>> factories = Arrays.<Class<ObjectStorageTestClientSupplier>>asList(
         new Class[]{ExoscaleS3TestClientFactory.class, AWSS3TestClientFactory.class, DigitalOceanS3TestClientFactory.class}
     );
 
@@ -51,7 +51,7 @@ public class S3Test {
             )
             .filter(Objects::nonNull)
             .filter(
-                S3TestClientSupplier::isConfigured
+                ObjectStorageTestClientSupplier::isConfigured
             )
             .map(
                 factory -> new Object[]{
@@ -67,7 +67,7 @@ public class S3Test {
     @Test(dataProvider = "dataProvider")
     public void testCompliantBucket(
         String resourcePrefix,
-        S3TestClientSupplier testClientSupplier,
+        ObjectStorageTestClientSupplier testClientSupplier,
         ScannerCoreFactory scannerCoreFactory
     ) {
         //Setup
@@ -82,7 +82,7 @@ public class S3Test {
             List<RuleConfiguration> rules = new ArrayList<>();
             Map<String, Object> options = new HashMap<>();
             rules.add(new RuleConfiguration(
-                S3PublicReadProhibitedRule.RULE,
+                ObjectStoragePublicReadProhibitedRule.RULE,
                 new ArrayList<>(),
                 options
             ));
@@ -98,7 +98,7 @@ public class S3Test {
             List<RuleResult> filteredResults = results
                 .stream()
                 .filter(result -> result.resourceName.equalsIgnoreCase(bucketName))
-                .filter(result -> result.resourceType.equalsIgnoreCase(S3Rule.RESOURCE_TYPE))
+                .filter(result -> result.resourceType.equalsIgnoreCase(ObjectStorageRule.RESOURCE_TYPE))
                 .collect(Collectors.toList());
 
             assertEquals(1, filteredResults.size());
@@ -114,7 +114,7 @@ public class S3Test {
 
     private void assertNonCompliantFilePublicAcl(
         String resourcePrefix,
-        S3TestClientSupplier testClientSupplier,
+        ObjectStorageTestClientSupplier testClientSupplier,
         ScannerCoreFactory scannerCoreFactory,
         CannedAccessControlList bucketAcl,
         CannedAccessControlList fileAcl,
@@ -142,7 +142,7 @@ public class S3Test {
             Map<String, Object> options = new HashMap<>();
             options.put("scanContents", scanContents);
             rules.add(new RuleConfiguration(
-                S3PublicReadProhibitedRule.RULE,
+                ObjectStoragePublicReadProhibitedRule.RULE,
                 new ArrayList<>(),
                 options
             ));
@@ -158,7 +158,7 @@ public class S3Test {
             List<RuleResult> filteredResults = results
                 .stream()
                 .filter(result -> result.resourceName.equalsIgnoreCase(bucketName))
-                .filter(result -> result.resourceType.equalsIgnoreCase(S3Rule.RESOURCE_TYPE))
+                .filter(result -> result.resourceType.equalsIgnoreCase(ObjectStorageRule.RESOURCE_TYPE))
                 .collect(Collectors.toList());
 
             assertEquals(1, filteredResults.size());
@@ -179,7 +179,7 @@ public class S3Test {
     @Test(dataProvider = "dataProvider")
     public void testNonCompliantBucketAcl(
         String resourcePrefix,
-        S3TestClientSupplier testClientSupplier,
+        ObjectStorageTestClientSupplier testClientSupplier,
         ScannerCoreFactory scannerCoreFactory
     ) {
         assertNonCompliantFilePublicAcl(
@@ -197,7 +197,7 @@ public class S3Test {
     @Test(dataProvider = "dataProvider")
     public void testNonCompliantFilePublicAclNoScanContents(
         String resourcePrefix,
-        S3TestClientSupplier testClientSupplier,
+        ObjectStorageTestClientSupplier testClientSupplier,
         ScannerCoreFactory scannerCoreFactory
     ) {
         assertNonCompliantFilePublicAcl(
@@ -214,7 +214,7 @@ public class S3Test {
     @Test(dataProvider = "dataProvider")
     public void testNonCompliantFilePublicAclScanContents(
         String resourcePrefix,
-        S3TestClientSupplier testClientSupplier,
+        ObjectStorageTestClientSupplier testClientSupplier,
         ScannerCoreFactory scannerCoreFactory
     ) {
         assertNonCompliantFilePublicAcl(

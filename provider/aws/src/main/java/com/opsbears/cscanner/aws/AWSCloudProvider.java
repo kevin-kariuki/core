@@ -2,13 +2,12 @@ package com.opsbears.cscanner.aws;
 
 import com.opsbears.cscanner.core.CloudProvider;
 import com.opsbears.cscanner.firewall.FirewallCloudProvider;
-import com.opsbears.cscanner.s3.S3CloudProvider;
+import com.opsbears.cscanner.objectstorage.ObjectStorageCloudProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Map;
 
 @ParametersAreNonnullByDefault
-public class AWSCloudProvider implements CloudProvider<AWSConfiguration, AWSConnection>, S3CloudProvider<AWSConfiguration, AWSConnection>, FirewallCloudProvider<AWSConfiguration, AWSConnection> {
+public class AWSCloudProvider implements CloudProvider<AWSConfiguration, AWSConnection>, ObjectStorageCloudProvider<AWSConfiguration, AWSConnection>, FirewallCloudProvider<AWSConfiguration, AWSConnection> {
     @Override
     public String getName() {
         return "aws";

@@ -7,6 +7,7 @@ import com.myjeeva.digitalocean.impl.DigitalOceanClient;
 import com.myjeeva.digitalocean.pojo.*;
 import com.opsbears.cscanner.firewall.Protocols;
 import com.opsbears.cscanner.firewall.TestFirewallClient;
+import org.testng.SkipException;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -47,7 +48,12 @@ public class DigitalOceanTestFirewallClient implements TestFirewallClient {
 
             apiClient.createFirewall(firewall);
         } catch (DigitalOceanException | RequestUnsuccessfulException e) {
-            throw new RuntimeException(e);
+            if (e.getMessage().equalsIgnoreCase("duplicate name")) {
+                ensureSecurityGroupAbsent(name);
+                ensureSecurityGroupExists(name);
+            } else {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -67,6 +73,9 @@ public class DigitalOceanTestFirewallClient implements TestFirewallClient {
                     pages = null;
                 }
             } catch (DigitalOceanException | RequestUnsuccessfulException e) {
+                if (e.getMessage().contains("Digital Oceans server are on maintenance.")) {
+                    throw new SkipException(e.getMessage(), e);
+                }
                 throw new RuntimeException(e);
             }
         } while (pages != null);
@@ -79,6 +88,9 @@ public class DigitalOceanTestFirewallClient implements TestFirewallClient {
         try {
             apiClient.deleteFirewall(findFirewall(name));
         } catch (DigitalOceanException | RequestUnsuccessfulException e) {
+            if (e.getMessage().contains("Digital Oceans server are on maintenance.")) {
+                throw new SkipException(e.getMessage(), e);
+            }
             throw new RuntimeException(e);
         }
     }
@@ -131,6 +143,9 @@ public class DigitalOceanTestFirewallClient implements TestFirewallClient {
 
             apiClient.updateFirewall(firewall);
         } catch (RequestUnsuccessfulException | DigitalOceanException e) {
+            if (e.getMessage().contains("Digital Oceans server are on maintenance.")) {
+                throw new SkipException(e.getMessage(), e);
+            }
             throw new RuntimeException(e);
         }
     }

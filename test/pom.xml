@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>com.opsbears.cscanner</groupId>
-            <artifactId>s3</artifactId>
+            <artifactId>objectstorage</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>

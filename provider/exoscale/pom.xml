@@ -21,9 +21,13 @@
         </dependency>
         <dependency>
             <groupId>com.opsbears.cscanner</groupId>
-            <artifactId>s3</artifactId>
+            <artifactId>objectstorage</artifactId>
             <version>master-SNAPSHOT</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.11.525</version>
         </dependency>
         <dependency>
             <groupId>com.opsbears.cscanner</groupId>

@@ -9,9 +9,9 @@
         <version>master-SNAPSHOT</version>
         <relativePath>../../</relativePath>
     </parent>
-    <artifactId>s3</artifactId>
-    <name>S3 bindings for CScanner</name>
-    <description>S3 libraries for CScanner</description>
+    <artifactId>objectstorage</artifactId>
+    <name>Object Storage bindings for CScanner</name>
+    <description>Object Storage libraries for CScanner</description>
 
     <dependencies>
         <dependency>

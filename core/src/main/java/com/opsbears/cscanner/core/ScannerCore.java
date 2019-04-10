@@ -80,7 +80,11 @@ public class ScannerCore {
 
             Optional<RuleBuilder<?, ?, ?>> ruleBuilder = ruleBuilders
                 .stream()
-                .filter(rb -> rb.getType().equalsIgnoreCase(ruleType))
+                .filter(
+                    rb ->
+                        rb.getType().equalsIgnoreCase(ruleType) ||
+                        rb.getTypeAliases().stream().anyMatch(alias -> alias.equalsIgnoreCase(ruleType))
+                )
                 .findFirst();
 
             if (!ruleBuilder.isPresent()) {

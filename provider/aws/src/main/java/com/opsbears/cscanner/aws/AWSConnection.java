@@ -3,13 +3,14 @@ package com.opsbears.cscanner.aws;
 import com.opsbears.cscanner.core.CloudProviderConnection;
 import com.opsbears.cscanner.firewall.FirewallClient;
 import com.opsbears.cscanner.firewall.FirewallConnection;
-import com.opsbears.cscanner.s3.S3Connection;
-import com.opsbears.cscanner.s3.S3Factory;
+import com.opsbears.cscanner.objectstorage.ObjectStorageClient;
+import com.opsbears.cscanner.objectstorage.ObjectStorageConnection;
+import com.opsbears.cscanner.objectstorage.S3ObjectStorageClient;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class AWSConnection implements CloudProviderConnection, S3Connection, FirewallConnection {
+public class AWSConnection implements CloudProviderConnection, ObjectStorageConnection, FirewallConnection {
     private final String name;
     private final AWSConfiguration awsConfiguration;
     private final AWSFirewallClient awsFirewallClient;
@@ -25,8 +26,8 @@ public class AWSConnection implements CloudProviderConnection, S3Connection, Fir
     }
 
     @Override
-    public S3Factory getS3Factory() {
-        return new AWSS3ClientSupplier(awsConfiguration);
+    public ObjectStorageClient getObjectStorageClient() {
+        return new S3ObjectStorageClient(new AWSS3ClientSupplier(awsConfiguration));
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.opsbears.cscanner.aws;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.opsbears.cscanner.s3.S3Factory;
+import com.opsbears.cscanner.objectstorage.S3Factory;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;

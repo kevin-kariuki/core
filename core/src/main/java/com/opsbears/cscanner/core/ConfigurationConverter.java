@@ -104,7 +104,7 @@ class ConfigurationConverter {
             output = (Class) outputType;
         }
 
-        if (Map.class.isAssignableFrom(output)) {
+        if (output != null && Map.class.isAssignableFrom(output)) {
             Map target = new HashMap();
             //Go through all items and perform a deep type conversion.
             for (Object mapKey : ((Map) input).keySet()) {
@@ -115,11 +115,13 @@ class ConfigurationConverter {
 
                 Object entry = input.get(mapKey);
                 if (entry instanceof Map) {
+                    //noinspection unchecked
                     target.put(mapKeyString, processMap((Map) entry, typeArguments.get(1)));
                 } else if (entry instanceof Collection) {
                     //noinspection unchecked
                     target.put(mapKeyString, processCollection((Collection) entry, typeArguments.get(1)));
                 } else {
+                    //noinspection unchecked
                     target.put(mapKeyString, typeConverter.convert(entry, ((Class<?>)typeArguments.get(1))));
                 }
             }

@@ -20,7 +20,7 @@
 
     <test name="S3">
         <packages>
-            <package name="com.opsbears.cscanner.s3" />
+            <package name="com.opsbears.cscanner.objectstorage" />
         </packages>
     </test>
 </suite>

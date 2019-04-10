@@ -24,7 +24,7 @@
         <module>provider/aws</module>
         <module>provider/digitalocean</module>
         <module>provider/exoscale</module>
-        <module>rule/s3</module>
+        <module>rule/objectstorage</module>
         <module>rule/firewall</module>
         <module>test</module>
     </modules>

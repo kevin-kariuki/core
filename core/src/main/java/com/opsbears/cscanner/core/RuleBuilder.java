@@ -1,12 +1,16 @@
 package com.opsbears.cscanner.core;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Map;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.List;
 
 @ParametersAreNonnullByDefault
 public interface RuleBuilder<RULETYPE extends Rule, CONNECTION extends CloudProviderConnection, CONFIGURATIONTYPE> {
     String getType();
+
+    default List<String> getTypeAliases() {
+        return new ArrayList<>();
+    }
 
     Class<CONNECTION> getConnectionType();
 
