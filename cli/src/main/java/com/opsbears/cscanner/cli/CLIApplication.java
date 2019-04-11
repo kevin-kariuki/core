@@ -71,6 +71,20 @@ public class CLIApplication {
             .help("Set log level to 'debug'.");
 
         parser
+            .addArgument("--legacy-s3-output")
+            .type(Boolean.class)
+            .setDefault(false)
+            .action(Arguments.storeTrue())
+            .help("Output object storage results as 's3' instead of 'objectstorage'.");
+
+        parser
+            .addArgument("--list-ips")
+            .type(Boolean.class)
+            .setDefault(false)
+            .action(Arguments.storeTrue())
+            .help("Lists all IP addresses in all cloud accounts instead of scanning for rule violations.");
+
+        parser
             .addArgument("FILE")
             .type(String.class)
             .help("Configuration file to read.");
@@ -112,19 +126,48 @@ public class CLIApplication {
             new ExoscalePlugin()
         ));
 
-        List<RuleResult> results = scannerCore.scan();
-
-        List<RuleResult> finalResults;
-        if (ns.getBoolean("compliant")) {
-            finalResults = results.stream().filter(result -> result.compliancy == RuleResult.Compliancy.COMPLIANT).collect(Collectors.toList());
-        } else if (ns.getBoolean("noncompliant")) {
-            finalResults = results.stream().filter(result -> result.compliancy == RuleResult.Compliancy.NONCOMPLIANT).collect(Collectors.toList());
+        if (ns.getBoolean("list_ips")) {
+            scannerCore.listIps().forEach(ip -> System.out.println(ip.toString()));
         } else {
-            finalResults = results;
-        }
+            List<RuleResult> results = scannerCore.scan();
 
-        //noinspection OptionalGetWithoutIsPresent
-        System.out.println(outputFormatters.stream().filter(of -> of.getType().equalsIgnoreCase(ns.getString("format"))).findFirst().get().format(finalResults));
+            if (ns.getBoolean("legacy_s3_output")) {
+                results = results
+                    .stream()
+                    .map(result -> !result.resourceType.equalsIgnoreCase("objectstorage") ? result : new RuleResult(
+                        result.connectionName,
+                        "s3",
+                        result.resourceRegion,
+                        result.resourceName,
+                        result.compliancy,
+                        result.violations
+                    ))
+                    .collect(Collectors.toList());
+            }
+
+            List<RuleResult> finalResults;
+            if (ns.getBoolean("compliant")) {
+                finalResults = results
+                    .stream()
+                    .filter(result -> result.compliancy == RuleResult.Compliancy.COMPLIANT)
+                    .collect(Collectors.toList());
+            } else if (ns.getBoolean("noncompliant")) {
+                finalResults = results
+                    .stream()
+                    .filter(result -> result.compliancy == RuleResult.Compliancy.NONCOMPLIANT)
+                    .collect(Collectors.toList());
+            } else {
+                finalResults = results;
+            }
+
+            //noinspection OptionalGetWithoutIsPresent
+            System.out.println(outputFormatters
+                .stream()
+                .filter(of -> of.getType().equalsIgnoreCase(ns.getString("format")))
+                .findFirst()
+                .get()
+                .format(finalResults));
+        }
     }
 
     public static void main(String[] argv) {

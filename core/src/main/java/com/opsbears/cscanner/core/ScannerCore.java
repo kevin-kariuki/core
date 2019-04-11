@@ -1,10 +1,12 @@
 package com.opsbears.cscanner.core;
 
+import com.opsbears.webcomponents.net.IPAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
+import java.util.stream.Stream;
 
 //todo this is too long / too many responsibilities, refactor and split
 @ParametersAreNonnullByDefault
@@ -13,17 +15,26 @@ public class ScannerCore {
     private final List<Plugin> plugins;
     private final CloudProviderConnectionFactory cloudProviderConnectionFactory = new CloudProviderConnectionFactory();
     private final RuleFactory ruleFactory = new RuleFactory();
+    private final List<RuleConfiguration> ruleConfigurations = new ArrayList<>();
+    private final List<ConfigLoader> configLoaders = new ArrayList<>();
+    private final List<CloudProvider<?, ?>> cloudProviders = new ArrayList<>();
+    private final List<RuleBuilder<?, ?, ?>> ruleBuilders = new ArrayList<>();
+    private final Map<String,CloudProvider<?, ?>> cloudProviderByConnectionKey = new HashMap<>();
+    private final Map<String, CloudProviderConnection> cloudProviderConnectionMap = new HashMap<>();
+    private boolean loaded = false;
 
     public ScannerCore(List<Plugin> plugins) {
         this.plugins = plugins;
     }
 
-    public List<RuleResult> scan() {
+    private void load() {
+        if (loaded) {
+            return;
+        }
+        loaded = true;
+
         //region Plugins
         logger.info("Loading plugins...");
-        List<ConfigLoader> configLoaders = new ArrayList<>();
-        List<CloudProvider<?, ?>> cloudProviders = new ArrayList<>();
-        List<RuleBuilder<?, ?, ?>> ruleBuilders = new ArrayList<>();
         for (Plugin plugin : plugins) {
             configLoaders.addAll(plugin.getConfigLoaders());
             cloudProviders.addAll(plugin.getCloudProviders());
@@ -35,7 +46,6 @@ public class ScannerCore {
         //region Connection configuration
         logger.info("Loading configuration...");
         Map<String, ConnectionConfiguration> connectionConfigurations = new HashMap<>();
-        List<RuleConfiguration> ruleConfigurations = new ArrayList<>();
         for (ConfigLoader configLoader : configLoaders) {
             connectionConfigurations.putAll(configLoader.loadConnectionConfigurations());
             ruleConfigurations.addAll(configLoader.loadRuleConfigurations());
@@ -45,8 +55,6 @@ public class ScannerCore {
 
         //region Cloud provider mapping
         logger.info("Configuring cloud providers...");
-        Map<String,CloudProvider<?, ?>> cloudProviderByConnectionKey = new HashMap<>();
-        Map<String, CloudProviderConnection> cloudProviderConnectionMap = new HashMap<>();
         for (String connectionKey : connectionConfigurations.keySet()) {
             ConnectionConfiguration connectionConfiguration = connectionConfigurations.get(connectionKey);
 
@@ -69,8 +77,26 @@ public class ScannerCore {
         }
         logger.info("Cloud providers configured.");
         //endregion
+    }
 
-        //region Rules
+    public Stream<IPAddress> listIps() {
+        load();
+        logger.info("Listing IP addresses...");
+        Stream<IPAddress> streams = Stream.empty();
+        for (CloudProviderConnection connection : cloudProviderConnectionMap.values()) {
+            if (connection instanceof HostDiscoveryCloudProviderConnection) {
+                streams = Stream.concat(
+                    streams,
+                    ((HostDiscoveryCloudProviderConnection) connection).getHostDiscoveryClient().listIpAddresses()
+                );
+            }
+        }
+        logger.info("IP address list complete.");
+        return streams;
+    }
+
+    public List<RuleResult> scan() {
+        load();
         logger.info("Configuring and executing rules...");
         List<RuleResult> result = new ArrayList<>();
         for (RuleConfiguration ruleConfiguration : ruleConfigurations) {
@@ -114,7 +140,6 @@ public class ScannerCore {
             }
         }
         logger.info("Rule execution complete.");
-        //endregion
 
         return result;
     }

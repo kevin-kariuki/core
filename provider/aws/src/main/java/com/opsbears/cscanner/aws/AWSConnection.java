@@ -1,6 +1,8 @@
 package com.opsbears.cscanner.aws;
 
 import com.opsbears.cscanner.core.CloudProviderConnection;
+import com.opsbears.cscanner.core.HostDiscoveryClient;
+import com.opsbears.cscanner.core.HostDiscoveryCloudProviderConnection;
 import com.opsbears.cscanner.firewall.FirewallClient;
 import com.opsbears.cscanner.firewall.FirewallConnection;
 import com.opsbears.cscanner.objectstorage.ObjectStorageClient;
@@ -10,7 +12,7 @@ import com.opsbears.cscanner.objectstorage.S3ObjectStorageClient;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class AWSConnection implements CloudProviderConnection, ObjectStorageConnection, FirewallConnection {
+public class AWSConnection implements CloudProviderConnection, ObjectStorageConnection, FirewallConnection, HostDiscoveryCloudProviderConnection {
     private final String name;
     private final AWSConfiguration awsConfiguration;
     private final AWSFirewallClient awsFirewallClient;
@@ -22,6 +24,7 @@ public class AWSConnection implements CloudProviderConnection, ObjectStorageConn
         this.name = name;
         this.awsConfiguration = awsConfiguration;
 
+        //Put here for caching
         awsFirewallClient = new AWSFirewallClient(awsConfiguration);
     }
 
@@ -38,5 +41,10 @@ public class AWSConnection implements CloudProviderConnection, ObjectStorageConn
     @Override
     public FirewallClient getFirewallClient() {
         return awsFirewallClient;
+    }
+
+    @Override
+    public HostDiscoveryClient getHostDiscoveryClient() {
+        return new AWSHostDiscoveryClient(awsConfiguration);
     }
 }

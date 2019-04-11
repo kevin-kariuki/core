@@ -9,7 +9,8 @@ title: Writing a Rule
     the author before starting to write a rule or provider to coordinate efforts.
 
 Writing a rule is a lot less well described than writing a provider as each rule has its very own implementation. For
-this example we will stick with an S3 implementation for various cloud providers.
+this example we will implement an imaginary S3 provider. (This used to be a real provider before the object storage
+overhaul.)
 
 ## Writing a rule class
 

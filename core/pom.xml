@@ -23,5 +23,10 @@
             <artifactId>builtin</artifactId>
             <version>1.0.0-alpha13</version>
         </dependency>
+        <dependency>
+            <groupId>com.opsbears.webcomponents</groupId>
+            <artifactId>net</artifactId>
+            <version>1.0.0-alpha13</version>
+        </dependency>
     </dependencies>
 </project>
