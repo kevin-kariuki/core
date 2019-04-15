@@ -10,7 +10,7 @@ but can also be useful to feed other scanner tools such as [OpenVAS](http://open
 To stop cscanner at the host discovery phase, simply use this command line option:
 
 ```
-java -jar cscanner.jar --list-ips
+java -jar cscanner.jar --list-ips config-file-name.yaml
 ```
 
 This will list all IP addresses and their associated hosts.
