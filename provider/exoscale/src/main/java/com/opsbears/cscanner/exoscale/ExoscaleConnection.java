@@ -48,6 +48,6 @@ public class ExoscaleConnection implements CloudProviderConnection, HostDiscover
 
     @Override
     public HostDiscoveryClient getHostDiscoveryClient() {
-        return new ExoscaleHostDiscoveryClient(exoscaleConfiguration);
+        return new ExoscaleHostDiscoveryClient(name, exoscaleConfiguration);
     }
 }

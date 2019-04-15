@@ -32,13 +32,17 @@ plugins:
 nav:
 - 'Home': 'index.md'
 - 'Downloads': 'downloads.md'
+- 'Installation': 'installation.md'
+- 'Configuration': 'configuration.md'
 - 'Cloud providers':
   - 'Amazon Web Services': 'providers/aws.md'
   - 'DigitalOcean': 'providers/digitalocean.md'
   - 'Exoscale': 'providers/exoscale.md'
 - 'Rules':
   - 'Firewall': 'rules/firewall.md'
-  - 'S3': 'rules/s3.md'
+  - 'Object Storage': 'rules/objectstorage.md'
+- 'Other features':
+  - 'Host discovery': 'other/host-discovery.md'
 - 'Development':
   - 'Contributing to CScanner': 'development/index.md'
   - 'Writing a Provider': 'development/provider.md'

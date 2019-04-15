@@ -126,8 +126,17 @@ public class CLIApplication {
             new ExoscalePlugin()
         ));
 
+        //todo refactor this
         if (ns.getBoolean("list_ips")) {
-            scannerCore.listIps().forEach(ip -> System.out.println(ip.toString()));
+            scannerCore
+                .listIps()
+                .forEach(
+                    ip ->
+                        System.out.println(
+                            ip.connectionName + "\t" +
+                                ip.resourceRegion + "\t" +
+                                ip.ipAddress.toString() + "\t" +
+                                String.join(",", ip.instanceIds)));
         } else {
             List<RuleResult> results = scannerCore.scan();
 

@@ -24,4 +24,4 @@ behavior, such as reading options from environment variables or credentials file
 The AWS provider currently supports the following rules:
 
 - [Firewall](../rules/firewall.md)
-- [S3](../rules/s3.md)
+- [Object Storage](../rules/objectstorage.md)

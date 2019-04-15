@@ -33,6 +33,6 @@ public class DigitalOceanCloudProvider implements
         String name,
         DigitalOceanConfiguration configuration
     ) {
-        return new DigitalOceanConnection(configuration);
+        return new DigitalOceanConnection(name, configuration);
     }
 }

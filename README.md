@@ -25,52 +25,41 @@
 
 ## A brief introduction
 
-This application lets you scan one or more cloud accounts for compliance with a certain ruleset. For example, to scan
-an AWS account to make sure there are no publicly readable S3 buckets, you can use this config file:
+This utility is intended to check your cloud configuration for compliance with your companies rules in an automated
+fashion, not unlike AWS Config.
+
+For example, if you want to make sure that your port 22 is never open to the world, across all your cloud providers,
+you could do something like this:
 
 ```yaml
----
 connections:
-  aws-test:
-    type: aws
-    accessKeyId: ""
-    secretAccessKey: ""
-  exoscale-test:
-    type: exoscale
-    key: ""
-    secret: ""
+  # Configure your connections here
 rules:
-  - type: S3_PUBLIC_READ_PROHIBITED
-    include:
-      - .*
-    exclude:
-      - .*public.*
   - type: FIREWALL_PUBLIC_SERVICE_PROHIBITED
-    protocol: 6
+    protocol: "tcp"
     ports:
       - 22
-    include:
-      - .*
-    exclude:
-      - .*public.*
 ```
 
-The result of the application will be like this:
+You would then get a report detailing all your security groups across all your cloud providers and if they
+are compliant or are violating the rules.
+
+## Downloading
+
+You can grab [one of the releases](https://github.com/janoszen/cscanner/releases) from GitHub.
+
+## Running
+
+To run the cscanner, simply point it to your config file:
 
 ```
-exoscale-test	s3	opsbears-honeypot-terraform	COMPLIANT
-aws-test	s3	elasticbeanstalk-us-east-1-556933211225	COMPLIANT
-aws-test	s3	janoszen-access-test	NONCOMPLIANT
+java -jar cscanner.jar your-config-file.yaml
 ```
 
-It is very similar to AWSConfig in its intention, but it is designed from the ground up to support multiple cloud
-providers and accounts at once.
+Make sure you have at least Java 8 to run this application. Note that you can use the `-h` or `--help` option to get a 
+full list of possible filtering and output options.
 
-## Requirements
+## Full documentation
 
-In order to run this project you will require at least a Java 8 JRE.
-
-## License
-
-This project is licensed under the Apache License Version 2.0.
+For a full documentation please see the cscanner website at [cscanner.io](https://cscanner.io).
 

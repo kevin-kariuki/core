@@ -5,6 +5,7 @@ import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2ClientBuilder;
 import com.amazonaws.services.ec2.model.*;
 import com.opsbears.cscanner.core.HostDiscoveryClient;
+import com.opsbears.cscanner.core.HostDiscoveryRecord;
 import com.opsbears.webcomponents.net.IPAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,15 +18,17 @@ import java.util.stream.StreamSupport;
 
 @ParametersAreNonnullByDefault
 public class AWSHostDiscoveryClient implements HostDiscoveryClient {
+    private final String connectionName;
     private final AWSConfiguration awsConfiguration;
     private final Logger logger = LoggerFactory.getLogger(AWSHostDiscoveryClient.class);
 
-    public AWSHostDiscoveryClient(AWSConfiguration awsConfiguration) {
+    public AWSHostDiscoveryClient(String connectionName, AWSConfiguration awsConfiguration) {
+        this.connectionName = connectionName;
         this.awsConfiguration = awsConfiguration;
     }
 
     @Override
-    public Stream<IPAddress> listIpAddresses() {
+    public Stream<HostDiscoveryRecord> listIpAddresses() {
         return StreamSupport.stream(
             Spliterators.spliteratorUnknownSize(new IpAddressIterator(
                 awsConfiguration
@@ -34,14 +37,14 @@ public class AWSHostDiscoveryClient implements HostDiscoveryClient {
 
     }
 
-    private static class IpAddressIterator implements Iterator<IPAddress> {
+    private class IpAddressIterator implements Iterator<HostDiscoveryRecord> {
         private final Logger logger = LoggerFactory.getLogger(IpAddressIterator.class);
         private String nextToken = null;
         private Regions currentRegion = null;
         private AmazonEC2 currentClient = null;
         private final Map<Regions, AmazonEC2> clients = new HashMap<>();
         private final Queue<Regions> regionQueue = new LinkedBlockingQueue<>();
-        private final Queue<IPAddress> ipAddresses = new LinkedBlockingQueue<>();
+        private final Queue<HostDiscoveryRecord> ipAddresses = new LinkedBlockingQueue<>();
 
         private IpAddressIterator(AWSConfiguration awsConfiguration) {
             for (Regions region : Regions.values()) {
@@ -73,7 +76,14 @@ public class AWSHostDiscoveryClient implements HostDiscoveryClient {
                         );
                     for (Reservation reservation : instancesResult.getReservations()) {
                         for (Instance instance : reservation.getInstances()) {
-                            ipAddresses.offer(IPAddress.getFromString(instance.getPublicIpAddress()));
+                            ipAddresses.offer(
+                                new HostDiscoveryRecord(
+                                    connectionName,
+                                    currentRegion.getName(),
+                                    IPAddress.getFromString(instance.getPublicIpAddress()),
+                                    Collections.singletonList(instance.getInstanceId())
+                                )
+                            );
                         }
                     }
                 } else if (!regionQueue.isEmpty()) {
@@ -88,7 +98,14 @@ public class AWSHostDiscoveryClient implements HostDiscoveryClient {
                         for (Reservation reservation : instancesResult.getReservations()) {
                             for (Instance instance : reservation.getInstances()) {
                                 if (instance.getPublicIpAddress() != null) {
-                                    ipAddresses.offer(IPAddress.getFromString(instance.getPublicIpAddress()));
+                                    ipAddresses.offer(
+                                        new HostDiscoveryRecord(
+                                            connectionName,
+                                            currentRegion.getName(),
+                                            IPAddress.getFromString(instance.getPublicIpAddress()),
+                                            Collections.singletonList(instance.getInstanceId())
+                                        )
+                                    );
                                 }
                             }
                         }
@@ -106,7 +123,7 @@ public class AWSHostDiscoveryClient implements HostDiscoveryClient {
         }
 
         @Override
-        public IPAddress next() {
+        public HostDiscoveryRecord next() {
             return ipAddresses.poll();
         }
     }

@@ -24,7 +24,7 @@ the object storage called "spaces".
 The DO provider currently supports the following rules:
 
 - [Firewall](../rules/firewall.md)
-- [S3](../rules/s3.md)
+- [Object Storage](../rules/objectstorage.md)
 
 ## Development notes
 

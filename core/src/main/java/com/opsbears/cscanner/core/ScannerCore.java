@@ -1,6 +1,5 @@
 package com.opsbears.cscanner.core;
 
-import com.opsbears.webcomponents.net.IPAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,10 +78,10 @@ public class ScannerCore {
         //endregion
     }
 
-    public Stream<IPAddress> listIps() {
+    public Stream<HostDiscoveryRecord> listIps() {
         load();
         logger.info("Listing IP addresses...");
-        Stream<IPAddress> streams = Stream.empty();
+        Stream<HostDiscoveryRecord> streams = Stream.empty();
         for (CloudProviderConnection connection : cloudProviderConnectionMap.values()) {
             if (connection instanceof HostDiscoveryCloudProviderConnection) {
                 streams = Stream.concat(

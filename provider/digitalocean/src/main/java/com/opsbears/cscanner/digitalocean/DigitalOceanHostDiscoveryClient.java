@@ -6,26 +6,30 @@ import com.myjeeva.digitalocean.exception.RequestUnsuccessfulException;
 import com.myjeeva.digitalocean.impl.DigitalOceanClient;
 import com.myjeeva.digitalocean.pojo.*;
 import com.opsbears.cscanner.core.HostDiscoveryClient;
+import com.opsbears.cscanner.core.HostDiscoveryRecord;
 import com.opsbears.webcomponents.net.IPAddress;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @ParametersAreNonnullByDefault
 public class DigitalOceanHostDiscoveryClient implements HostDiscoveryClient {
+    private final String connectionName;
     private final String token;
     private final DigitalOcean apiClient;
 
-    public DigitalOceanHostDiscoveryClient(DigitalOceanConfiguration configuration) {
+    public DigitalOceanHostDiscoveryClient(String connectionName, DigitalOceanConfiguration configuration) {
+        this.connectionName = connectionName;
         token = configuration.apiToken;
         apiClient = new DigitalOceanClient(token);
     }
 
-    private List<IPAddress> getFloatingIps() {
-        List<IPAddress> ipAddresses = new ArrayList<>();
+    private List<HostDiscoveryRecord> getFloatingIps() {
+        List<HostDiscoveryRecord> ipAddresses = new ArrayList<>();
 
         Pages pages;
         int page = 0;
@@ -39,8 +43,12 @@ public class DigitalOceanHostDiscoveryClient implements HostDiscoveryClient {
                 ipAddresses.addAll(floatingIps
                     .getFloatingIPs()
                     .stream()
-                    .map(FloatingIP::getIp)
-                    .map(IPAddress::getFromString)
+                    .map(ip -> new HostDiscoveryRecord(
+                        connectionName,
+                        ip.getRegion().getName(),
+                        IPAddress.getFromString(ip.getIp()),
+                        Collections.singletonList(ip.getDroplet().getId().toString())
+                    ))
                     .collect(Collectors.toList()));
                 if (floatingIps.getLinks() != null && floatingIps.getLinks().getPages() != null && floatingIps.getLinks().getPages().getNext() != null) {
                     pages = floatingIps.getLinks().getPages();
@@ -56,8 +64,8 @@ public class DigitalOceanHostDiscoveryClient implements HostDiscoveryClient {
         return ipAddresses;
     }
 
-    private List<IPAddress> getDropletIps() {
-        List<IPAddress> ipAddresses = new ArrayList<>();
+    private List<HostDiscoveryRecord> getDropletIps() {
+        List<HostDiscoveryRecord> ipAddresses = new ArrayList<>();
 
         Pages pages;
         int page = 0;
@@ -76,16 +84,24 @@ public class DigitalOceanHostDiscoveryClient implements HostDiscoveryClient {
                                 .getNetworks()
                                 .getVersion4Networks()
                                 .stream()
-                                .map(Network::getIpAddress)
-                                .map(IPAddress::getFromString)
+                                .map(ip -> new HostDiscoveryRecord(
+                                    connectionName,
+                                    droplet.getRegion().getName(),
+                                    IPAddress.getFromString(ip.getIpAddress()),
+                                    Collections.singletonList(droplet.getId().toString())
+                                ))
                                 .collect(Collectors.toList()));
                         ipAddresses.addAll(
                             droplet
                                 .getNetworks()
                                 .getVersion6Networks()
                                 .stream()
-                                .map(Network::getIpAddress)
-                                .map(IPAddress::getFromString)
+                                .map(ip -> new HostDiscoveryRecord(
+                                    connectionName,
+                                    droplet.getRegion().getName(),
+                                    IPAddress.getFromString(ip.getIpAddress()),
+                                    Collections.singletonList(droplet.getId().toString())
+                                ))
                                 .collect(Collectors.toList()));
                     });
                 if (droplets.getLinks() != null && droplets.getLinks().getPages() != null && droplets.getLinks().getPages().getNext() != null) {
@@ -104,8 +120,8 @@ public class DigitalOceanHostDiscoveryClient implements HostDiscoveryClient {
     }
 
     @Override
-    public Stream<IPAddress> listIpAddresses() {
-        List<IPAddress> ipAddresses = new ArrayList<>();
+    public Stream<HostDiscoveryRecord> listIpAddresses() {
+        List<HostDiscoveryRecord> ipAddresses = new ArrayList<>();
 
         ipAddresses.addAll(getDropletIps());
         ipAddresses.addAll(getFloatingIps());

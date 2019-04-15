@@ -45,6 +45,6 @@ public class AWSConnection implements CloudProviderConnection, ObjectStorageConn
 
     @Override
     public HostDiscoveryClient getHostDiscoveryClient() {
-        return new AWSHostDiscoveryClient(awsConfiguration);
+        return new AWSHostDiscoveryClient(name, awsConfiguration);
     }
 }

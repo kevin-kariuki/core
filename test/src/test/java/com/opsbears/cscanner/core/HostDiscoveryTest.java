@@ -3,7 +3,6 @@ package com.opsbears.cscanner.core;
 import com.opsbears.cscanner.aws.AWSHostDiscoveryTestClientFactory;
 import com.opsbears.cscanner.digitalocean.DigitalOceanHostDiscoveryTestClientFactory;
 import com.opsbears.cscanner.exoscale.ExoscaleHostDiscoveryTestClientFactory;
-import com.opsbears.webcomponents.net.IPAddress;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -71,7 +70,7 @@ public class HostDiscoveryTest {
             //Execute
             result = scannerCore
                 .listIps()
-                .map(IPAddress::toString)
+                .map(ip -> ip.ipAddress.toString())
                 .filter(ip -> ip.equalsIgnoreCase(host.ipAddress.toString()))
                 .findAny();
 

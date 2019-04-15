@@ -24,4 +24,4 @@ Note, that `cloudstack.ini` is currently not supported.
 The Exoscale provider supports the following rule sets:
 
 - [Firewall](../rules/firewall.md)
-- [S3](../rules/s3.md)
+- [Object Storage](../rules/objectstorage.md)

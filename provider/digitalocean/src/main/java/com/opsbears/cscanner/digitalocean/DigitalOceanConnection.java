@@ -13,9 +13,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 public class DigitalOceanConnection implements CloudProviderConnection, HostDiscoveryCloudProviderConnection, ObjectStorageConnection, FirewallConnection {
+    private final String connectionName;
     private final DigitalOceanConfiguration configuration;
 
-    public DigitalOceanConnection(DigitalOceanConfiguration configuration) {
+    public DigitalOceanConnection(String connectionName, DigitalOceanConfiguration configuration) {
+        this.connectionName = connectionName;
         this.configuration = configuration;
     }
 
@@ -39,6 +41,7 @@ public class DigitalOceanConnection implements CloudProviderConnection, HostDisc
     @Override
     public HostDiscoveryClient getHostDiscoveryClient() {
         return new DigitalOceanHostDiscoveryClient(
+            connectionName,
             configuration
         );
     }
