@@ -1,6 +1,8 @@
 package com.opsbears.cscanner.core;
 
 import com.opsbears.cscanner.aws.AWSHostDiscoveryTestClientFactory;
+import com.opsbears.cscanner.digitalocean.DigitalOceanHostDiscoveryTestClientFactory;
+import com.opsbears.cscanner.exoscale.ExoscaleHostDiscoveryTestClientFactory;
 import com.opsbears.webcomponents.net.IPAddress;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -16,7 +18,11 @@ public class HostDiscoveryTest {
 
     @SuppressWarnings("unchecked")
     private static List<Class<HostDiscoveryTestClientFactory>> factories = Arrays.asList(
-        new Class[]{AWSHostDiscoveryTestClientFactory.class}
+        new Class[]{
+            AWSHostDiscoveryTestClientFactory.class,
+            DigitalOceanHostDiscoveryTestClientFactory.class,
+            ExoscaleHostDiscoveryTestClientFactory.class,
+        }
     );
 
     @DataProvider(name = "dataProvider")

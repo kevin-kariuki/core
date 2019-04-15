@@ -1,13 +1,18 @@
 package com.opsbears.cscanner.exoscale;
 
 import com.opsbears.cscanner.core.CloudProvider;
+import com.opsbears.cscanner.core.HostDiscoveryCloudProvider;
 import com.opsbears.cscanner.firewall.FirewallCloudProvider;
 import com.opsbears.cscanner.objectstorage.ObjectStorageCloudProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class ExoscaleCloudProvider implements CloudProvider<ExoscaleConfiguration, ExoscaleConnection>, ObjectStorageCloudProvider<ExoscaleConfiguration, ExoscaleConnection>, FirewallCloudProvider<ExoscaleConfiguration, ExoscaleConnection> {
+public class ExoscaleCloudProvider implements
+    CloudProvider<ExoscaleConfiguration, ExoscaleConnection>,
+    HostDiscoveryCloudProvider<ExoscaleConfiguration, ExoscaleConnection>,
+    ObjectStorageCloudProvider<ExoscaleConfiguration, ExoscaleConnection>,
+    FirewallCloudProvider<ExoscaleConfiguration, ExoscaleConnection> {
     @Override
     public String getName() {
         return "exoscale";
