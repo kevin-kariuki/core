@@ -1,7 +1,8 @@
 # CScanner: A Cloud Security Scanner
 
 [![GitHub Releases](https://img.shields.io/github/release/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner/releases)
-[![GitHub](https://img.shields.io/github/license/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner/blob/master/LICENSE)
+[![Code Quality](https://img.shields.io/lgtm/grade/java/g/janoszen/cscanner.svg)](https://lgtm.com/projects/g/janoszen/cscanner/)
+[![License](https://img.shields.io/github/license/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/413306353545773069.svg)](https://pasztor.at/discord)
 [![CircleCI](https://img.shields.io/circleci/project/github/janoszen/cscanner.svg)](https://circleci.com/gh/janoszen/cscanner)
 [![GitHub last commit](https://img.shields.io/github/last-commit/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner)
