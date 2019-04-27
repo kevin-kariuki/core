@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 @ParametersAreNonnullByDefault
 public class DigitalOceanFirewallClient implements FirewallClient {
-    private final Protocols protocols = Protocols.getInstance();
     private final List<FirewallGroup> firewallGroupsCache = new ArrayList<>();
     private final String apiToken;
 

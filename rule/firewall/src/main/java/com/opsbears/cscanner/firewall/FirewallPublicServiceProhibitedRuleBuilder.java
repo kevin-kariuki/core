@@ -3,10 +3,6 @@ package com.opsbears.cscanner.firewall;
 import com.opsbears.cscanner.core.RuleBuilder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
 
 @ParametersAreNonnullByDefault
 public class FirewallPublicServiceProhibitedRuleBuilder implements RuleBuilder<FirewallPublicServiceProhibitedRule, FirewallConnection, FirewallPublicServiceProhibitedRule.Options> {

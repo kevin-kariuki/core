@@ -57,7 +57,7 @@ public class YamlConfigLoader implements ConfigLoader {
         connectionsMap = new HashMap<>(connectionsMap);
         if (connectionsMap.containsKey("include") && connectionsMap.get("include") instanceof Collection) {
             connectionsMap.remove("include");
-            for (Object include : (Collection)connectionsMap.get("include")) {
+            for (Object include : (Collection<?>)connectionsMap.get("include")) {
                 if (!(include instanceof String)) {
                     throw new RuntimeException("Encountered " + include.getClass().getSimpleName() + " in 'include' key in connections, expected string");
                 }
@@ -124,8 +124,8 @@ public class YamlConfigLoader implements ConfigLoader {
         List<Object> rulesToRemove = new ArrayList<>();
         List<String> urlsToLoad = new ArrayList<>();
         for (Object rule : rules) {
-            if (rule instanceof Map && ((Map) rule).size() == 1 && ((Map) rule).containsKey("include")) {
-                Object includeTarget = ((Map) rule).get("include");
+            if (rule instanceof Map && ((Map<?, ?>) rule).size() == 1 && ((Map<?, ?>) rule).containsKey("include")) {
+                Object includeTarget = ((Map<?, ?>) rule).get("include");
                 if (!(includeTarget instanceof String)) {
                     throw new RuntimeException("Expected string for key 'include', found " + includeTarget.getClass().getSimpleName() + " instead.");
                 }
@@ -144,7 +144,7 @@ public class YamlConfigLoader implements ConfigLoader {
                 if (!(yamlData instanceof Collection)) {
                     throw new RuntimeException("Expected list in included file " + newUrl.toString() + " found " + yamlData.getClass().getSimpleName() + " instead.");
                 }
-                rules.addAll((Collection) yamlData);
+                rules.addAll((Collection<?>) yamlData);
                 rules = loadRuleIncludes(newUrl, rules);
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
@@ -156,7 +156,7 @@ public class YamlConfigLoader implements ConfigLoader {
     @Override
     public List<RuleConfiguration> loadRuleConfigurations() {
         List<RuleConfiguration> result = new ArrayList<>();
-        Map<String, Object> yamlData = null;
+        Map<String, Object> yamlData;
         URL url;
         try {
             url = new File(filename).toURL();
@@ -177,12 +177,12 @@ public class YamlConfigLoader implements ConfigLoader {
             for (int i = 0; i < ruleList.size(); i++) {
                 Object rule = ruleList.get(i);
                 if (!(rule instanceof Map)) {
-                    throw new RuntimeException(("Expected Map for type " + Integer.toString(i) + ", " + rule.getClass().getSimpleName() + " found instead."));
+                    throw new RuntimeException(("Expected Map for type " + i + ", " + rule.getClass().getSimpleName() + " found instead."));
                 }
                 //noinspection unchecked
                 Map<Object, Object> ruleMap = (Map<Object, Object>) rule;
                 if (!ruleMap.containsKey("type")) {
-                    throw new RuntimeException("Expected to find key 'type' on type " + Integer.toString(i));
+                    throw new RuntimeException("Expected to find key 'type' on type " + i);
                 }
                 String type = ruleMap.get("type").toString();
 
@@ -192,7 +192,7 @@ public class YamlConfigLoader implements ConfigLoader {
                     if (!(connectionsList instanceof List)) {
                         throw new RuntimeException("Expected 'connections' key on rule " + i + " to be a list, " + connectionsList.getClass().getSimpleName() + " found");
                     }
-                    for (Object connection : (List)connectionsList) {
+                    for (Object connection : (List<?>)connectionsList) {
                         connections.add(connection.toString());
                     }
                 }

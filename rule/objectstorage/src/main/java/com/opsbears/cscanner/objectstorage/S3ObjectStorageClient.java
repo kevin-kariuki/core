@@ -5,19 +5,13 @@ import com.amazonaws.services.s3.model.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @ParametersAreNonnullByDefault
 public class S3ObjectStorageClient implements ObjectStorageClient {
     private final S3Factory s3Factory;
-    private final ExecutorService executorService =
-        new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<Runnable>());
 
     public S3ObjectStorageClient(S3Factory s3Factory) {
         this.s3Factory = s3Factory;
@@ -92,7 +86,6 @@ public class S3ObjectStorageClient implements ObjectStorageClient {
 
     private class ObjectIterator implements Iterator<Object> {
         private final Bucket bucket;
-        private final S3Factory s3Factory;
         private final AmazonS3 s3Client;
         private final Queue<Object> queue = new LinkedBlockingQueue<>();
         private String lastToken = null;
@@ -103,7 +96,6 @@ public class S3ObjectStorageClient implements ObjectStorageClient {
             S3Factory s3Factory
         ) {
             this.bucket = bucket;
-            this.s3Factory = s3Factory;
             this.s3Client = s3Factory.get(bucket.region);
         }
 

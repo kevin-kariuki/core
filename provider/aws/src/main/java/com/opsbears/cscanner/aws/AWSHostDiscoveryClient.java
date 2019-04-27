@@ -20,7 +20,6 @@ import java.util.stream.StreamSupport;
 public class AWSHostDiscoveryClient implements HostDiscoveryClient {
     private final String connectionName;
     private final AWSConfiguration awsConfiguration;
-    private final Logger logger = LoggerFactory.getLogger(AWSHostDiscoveryClient.class);
 
     public AWSHostDiscoveryClient(String connectionName, AWSConfiguration awsConfiguration) {
         this.connectionName = connectionName;

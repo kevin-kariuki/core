@@ -17,7 +17,7 @@ class ConfigurationConverter {
 
     <T> T convert(Map<String, Object> sourceParameters, Class<T> targetClass) {
         List<List<String>> validKeySets = new ArrayList<>();
-        for (Constructor constructor : targetClass.getConstructors()) {
+        for (Constructor<?> constructor : targetClass.getConstructors()) {
             Set<String> parameterNames = new TreeSet<>(sourceParameters.keySet());
             Parameter[] parameters = constructor.getParameters();
             boolean allParametersAreValid = true;
@@ -38,9 +38,9 @@ class ConfigurationConverter {
                     parameterNames.remove(parameterName);
 
                     if (value instanceof Map) {
-                        value = processMap((Map) value, constructor.getGenericParameterTypes()[parameterNumber]);
+                        value = processMap((Map<?, ?>) value, constructor.getGenericParameterTypes()[parameterNumber]);
                     } else if (value instanceof Collection) {
-                        value = processCollection((Collection) value, constructor.getGenericParameterTypes()[parameterNumber]);
+                        value = processCollection((Collection<?>) value, constructor.getGenericParameterTypes()[parameterNumber]);
                     } else {
                         try {
                             value = typeConverter.convert(value, parameter.getType());
@@ -85,8 +85,8 @@ class ConfigurationConverter {
         throw new RuntimeException("Failed to parse parameters into " + targetClass.getSimpleName() + ". Parameters provided: " + parametersProvided + ", parameters expected: " + parametersExpected + " (automatic type conversion may have failed)");
     }
 
-    private <T> T processMap(Map input, Type outputType) {
-        Class output = null;
+    private <T> T processMap(Map<?, ?> input, Type outputType) {
+        Class<?> output = null;
         List<Type> typeArguments = new ArrayList<>();
         if (outputType instanceof ParameterizedType) {
             Type rawType = ((ParameterizedType) outputType).getRawType();
@@ -96,18 +96,18 @@ class ConfigurationConverter {
             }
 
             if (rawType instanceof Class) {
-                output = (Class) rawType;
+                output = (Class<?>) rawType;
             } else {
                 throw new TypeConversionFailedException();
             }
         } else if (outputType instanceof Class) {
-            output = (Class) outputType;
+            output = (Class<?>) outputType;
         }
 
         if (output != null && Map.class.isAssignableFrom(output)) {
-            Map target = new HashMap();
+            Map<String, Object> target = new HashMap<>();
             //Go through all items and perform a deep type conversion.
-            for (Object mapKey : ((Map) input).keySet()) {
+            for (Object mapKey : input.keySet()) {
                 if (!(mapKey instanceof String)) {
                     mapKey = typeConverter.convert(mapKey, String.class);
                 }
@@ -116,10 +116,10 @@ class ConfigurationConverter {
                 Object entry = input.get(mapKey);
                 if (entry instanceof Map) {
                     //noinspection unchecked
-                    target.put(mapKeyString, processMap((Map) entry, typeArguments.get(1)));
+                    target.put(mapKeyString, processMap((Map<?, ?>) entry, typeArguments.get(1)));
                 } else if (entry instanceof Collection) {
                     //noinspection unchecked
-                    target.put(mapKeyString, processCollection((Collection) entry, typeArguments.get(1)));
+                    target.put(mapKeyString, processCollection((Collection<?>) entry, typeArguments.get(1)));
                 } else {
                     //noinspection unchecked
                     target.put(mapKeyString, typeConverter.convert(entry, ((Class<?>)typeArguments.get(1))));
@@ -135,8 +135,8 @@ class ConfigurationConverter {
 
     }
 
-    private <T> T processCollection(Collection input, Type outputType) {
-        Class output = null;
+    private <T> T processCollection(Collection<?> input, Type outputType) {
+        Class<?> output = null;
         List<Type> typeArguments = new ArrayList<>();
         if (outputType instanceof ParameterizedType) {
             Type rawType = ((ParameterizedType) outputType).getRawType();
@@ -146,27 +146,27 @@ class ConfigurationConverter {
             }
 
             if (rawType instanceof Class) {
-                output = (Class) rawType;
+                output = (Class<?>) rawType;
             } else {
                 throw new TypeConversionFailedException();
             }
         } else if (outputType instanceof Class) {
-            output = (Class) outputType;
+            output = (Class<?>) outputType;
         }
         //noinspection ConstantConditions
         if (Collection.class.isAssignableFrom(output)) {
-            List target = new ArrayList();
+            List<Object> target = new ArrayList<>();
             Type actualTypeParameter = typeArguments.get(0);
             for (Object entry : input) {
                 if (actualTypeParameter instanceof Class<?>) {
                     if (entry instanceof Map) {
                         //Map inside of a list
                         //noinspection unchecked
-                        target.add(processMap((Map)entry, (Class)actualTypeParameter));
+                        target.add(processMap((Map<?, ?>)entry, actualTypeParameter));
                     } else if (entry instanceof Collection) {
                         //List inside of a list
                         //noinspection unchecked
-                        target.add(processCollection((List)entry, (Class)actualTypeParameter));
+                        target.add(processCollection((List<?>)entry, actualTypeParameter));
                     } else {
                         //Other things inside of a list
                         //noinspection unchecked

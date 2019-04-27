@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-public interface RuleBuilder<RULETYPE extends Rule, CONNECTION extends CloudProviderConnection, CONFIGURATIONTYPE> {
+public interface RuleBuilder<RULETYPE extends Rule<? extends CloudProviderConnection>, CONNECTION extends CloudProviderConnection, CONFIGURATIONTYPE> {
     String getType();
 
     default List<String> getTypeAliases() {

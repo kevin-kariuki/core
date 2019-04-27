@@ -4,7 +4,7 @@ import com.opsbears.cscanner.core.Plugin;
 import com.opsbears.cscanner.core.RuleBuilder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
@@ -12,8 +12,8 @@ public class ObjectStoragePlugin implements Plugin {
     @Override
     public List<RuleBuilder<?, ?, ?>> getSupportedRules() {
         //noinspection unchecked
-        return Arrays.asList(
-            new ObjectStoragePublicReadProhibitedRuleBuilder()
+        return Collections.singletonList(
+                new ObjectStoragePublicReadProhibitedRuleBuilder()
         );
     }
 }
