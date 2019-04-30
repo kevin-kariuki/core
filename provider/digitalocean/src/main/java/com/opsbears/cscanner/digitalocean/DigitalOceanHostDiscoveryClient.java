@@ -19,13 +19,11 @@ import java.util.stream.Stream;
 @ParametersAreNonnullByDefault
 public class DigitalOceanHostDiscoveryClient implements HostDiscoveryClient {
     private final String connectionName;
-    private final String token;
     private final DigitalOcean apiClient;
 
     public DigitalOceanHostDiscoveryClient(String connectionName, DigitalOceanConfiguration configuration) {
         this.connectionName = connectionName;
-        token = configuration.apiToken;
-        apiClient = new DigitalOceanClient(token);
+        apiClient = new DigitalOceanClient(configuration.apiToken);
     }
 
     private List<HostDiscoveryRecord> getFloatingIps() {

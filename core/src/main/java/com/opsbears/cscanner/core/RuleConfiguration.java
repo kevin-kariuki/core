@@ -1,6 +1,5 @@
 package com.opsbears.cscanner.core;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Map;
 

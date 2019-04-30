@@ -15,6 +15,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -181,9 +182,9 @@ public class CLIApplication {
 
     public static void main(String[] argv) {
         CLIApplication app = new CLIApplication(
-            Arrays.asList(
-                new TextOutputFormatter()
-            )
+                Collections.singletonList(
+                        new TextOutputFormatter()
+                )
         );
 
         app.run(argv);

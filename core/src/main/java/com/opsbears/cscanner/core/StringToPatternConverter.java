@@ -6,7 +6,6 @@ import com.opsbears.webcomponents.typeconverter.TypeConverter;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 @ParametersAreNonnullByDefault
 public class StringToPatternConverter implements FixedTypeConverter {

@@ -7,7 +7,7 @@ import java.util.Map;
 class RuleFactory {
     private final ConfigurationConverter configurationConverter = new ConfigurationConverter();
 
-    <RULETYPE extends Rule, CONNECTION extends CloudProviderConnection, CONFIGURATIONTYPE> RULETYPE create(
+    <RULETYPE extends Rule<? extends CloudProviderConnection>, CONNECTION extends CloudProviderConnection, CONFIGURATIONTYPE> RULETYPE create(
         RuleBuilder<RULETYPE, CONNECTION, CONFIGURATIONTYPE> ruleBuilder,
         Map<String, Object> ruleOptions
     ) {

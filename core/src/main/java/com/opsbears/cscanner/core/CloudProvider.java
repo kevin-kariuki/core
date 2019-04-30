@@ -1,7 +1,6 @@
 package com.opsbears.cscanner.core;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Map;
 
 @ParametersAreNonnullByDefault
 public interface CloudProvider<CONFIGURATIONTYPE, CONNECTIONTYPE extends CloudProviderConnection> {

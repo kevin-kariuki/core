@@ -4,7 +4,7 @@ import com.opsbears.cscanner.core.ConfigLoader;
 import com.opsbears.cscanner.core.Plugin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
@@ -17,8 +17,8 @@ public class YamlPlugin implements Plugin {
 
     @Override
     public List<ConfigLoader> getConfigLoaders() {
-        return Arrays.asList(
-            new YamlConfigLoader(filename)
+        return Collections.singletonList(
+                new YamlConfigLoader(filename)
         );
     }
 }

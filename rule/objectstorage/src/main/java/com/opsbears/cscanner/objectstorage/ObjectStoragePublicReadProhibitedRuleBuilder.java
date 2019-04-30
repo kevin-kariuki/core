@@ -3,7 +3,7 @@ package com.opsbears.cscanner.objectstorage;
 import com.opsbears.cscanner.core.RuleBuilder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
@@ -15,8 +15,8 @@ public class ObjectStoragePublicReadProhibitedRuleBuilder implements RuleBuilder
 
     @Override
     public List<String> getTypeAliases() {
-        return Arrays.asList(
-            ObjectStoragePublicReadProhibitedRule.LEGACY_RULE
+        return Collections.singletonList(
+                ObjectStoragePublicReadProhibitedRule.LEGACY_RULE
         );
     }
 
