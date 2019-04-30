@@ -100,6 +100,7 @@ public class FirewallPublicServiceProhibitedRule implements Rule<FirewallConnect
             results.add(
                 new RuleResult(
                     connection.getConnectionName(),
+                    RULE,
                     FirewallConnection.RESOURCE_TYPE,
                     firewallGroup.region,
                     firewallGroup.name,

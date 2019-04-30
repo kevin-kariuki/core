@@ -8,6 +8,7 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 public class RuleResult {
     public final String connectionName;
+    public final String ruleType;
     public final String resourceType;
     @Nullable
     public final String resourceRegion;
@@ -17,15 +18,17 @@ public class RuleResult {
 
     public RuleResult(
         String connectionName,
+        String ruleType,
         String resourceType,
         @Nullable
-        String resourceRegion,
+            String resourceRegion,
         String resourceName,
         Compliancy compliancy,
         @Nullable
-        List<Violation> violations
+            List<Violation> violations
     ) {
         this.connectionName = connectionName;
+        this.ruleType = ruleType;
         this.resourceType = resourceType;
         this.resourceRegion = resourceRegion;
         this.resourceName = resourceName;

@@ -62,6 +62,7 @@ public class ObjectStoragePublicReadProhibitedRule implements ObjectStorageRule 
                     violations.add(new RuleResult.Violation(null, "Bucket has a public-read ACL"));
                     return new RuleResult(
                         connection.getConnectionName(),
+                        RULE,
                         ObjectStorageRule.RESOURCE_TYPE,
                         bucket.region,
                         bucket.bucketName,
@@ -72,6 +73,7 @@ public class ObjectStoragePublicReadProhibitedRule implements ObjectStorageRule 
                 if (bucket.blocksContentPublicReadAcl) {
                     return new RuleResult(
                         connection.getConnectionName(),
+                        RULE,
                         ObjectStorageRule.RESOURCE_TYPE,
                         bucket.region,
                         bucket.bucketName,
@@ -91,6 +93,7 @@ public class ObjectStoragePublicReadProhibitedRule implements ObjectStorageRule 
                     if (nonCompliantCount > 0) {
                         return new RuleResult(
                             connection.getConnectionName(),
+                            RULE,
                             ObjectStorageRule.RESOURCE_TYPE,
                             bucket.region,
                             bucket.bucketName,
@@ -101,6 +104,7 @@ public class ObjectStoragePublicReadProhibitedRule implements ObjectStorageRule 
                 }
                 return new RuleResult(
                     connection.getConnectionName(),
+                    RULE,
                     ObjectStorageRule.RESOURCE_TYPE,
                     bucket.region,
                     bucket.bucketName,

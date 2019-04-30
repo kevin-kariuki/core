@@ -6,6 +6,7 @@ import com.opsbears.cscanner.core.ScannerCore;
 import com.opsbears.cscanner.exoscale.ExoscalePlugin;
 import com.opsbears.cscanner.firewall.FirewallPlugin;
 import com.opsbears.cscanner.objectstorage.ObjectStoragePlugin;
+import com.opsbears.cscanner.tags.TaggedResourcePlugin;
 import com.opsbears.cscanner.yaml.YamlPlugin;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.impl.Arguments;
@@ -15,7 +16,6 @@ import net.sourceforge.argparse4j.inf.Namespace;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -123,6 +123,7 @@ public class CLIApplication {
             new YamlPlugin(file),
             new ObjectStoragePlugin(),
             new FirewallPlugin(),
+            new TaggedResourcePlugin(),
             new AWSPlugin(),
             new ExoscalePlugin()
         ));
@@ -146,6 +147,7 @@ public class CLIApplication {
                     .stream()
                     .map(result -> !result.resourceType.equalsIgnoreCase("objectstorage") ? result : new RuleResult(
                         result.connectionName,
+                        result.ruleType,
                         "s3",
                         result.resourceRegion,
                         result.resourceName,
@@ -182,9 +184,10 @@ public class CLIApplication {
 
     public static void main(String[] argv) {
         CLIApplication app = new CLIApplication(
-                Collections.singletonList(
-                        new TextOutputFormatter()
-                )
+            Arrays.asList(
+                new TextOutputFormatter(),
+                new JsonOutputFormatter()
+            )
         );
 
         app.run(argv);

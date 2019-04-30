@@ -8,11 +8,13 @@ import com.opsbears.cscanner.firewall.FirewallConnection;
 import com.opsbears.cscanner.objectstorage.ObjectStorageClient;
 import com.opsbears.cscanner.objectstorage.ObjectStorageConnection;
 import com.opsbears.cscanner.objectstorage.S3ObjectStorageClient;
+import com.opsbears.cscanner.tags.TaggedResourceClient;
+import com.opsbears.cscanner.tags.TaggedResourceConnection;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class AWSConnection implements CloudProviderConnection, ObjectStorageConnection, FirewallConnection, HostDiscoveryCloudProviderConnection {
+public class AWSConnection implements CloudProviderConnection, ObjectStorageConnection, FirewallConnection, HostDiscoveryCloudProviderConnection, TaggedResourceConnection {
     private final String name;
     private final AWSConfiguration awsConfiguration;
     private final AWSFirewallClient awsFirewallClient;
@@ -46,5 +48,13 @@ public class AWSConnection implements CloudProviderConnection, ObjectStorageConn
     @Override
     public HostDiscoveryClient getHostDiscoveryClient() {
         return new AWSHostDiscoveryClient(name, awsConfiguration);
+    }
+
+    @Override
+    public TaggedResourceClient getTaggedResourceClient() {
+        return new AWSTaggedResourceClient(
+            name,
+            awsConfiguration
+        );
     }
 }
