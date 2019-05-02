@@ -13,7 +13,8 @@ public class TaggedResourcePlugin implements Plugin {
     public List<RuleBuilder<?, ?, ?>> getSupportedRules() {
         //noinspection unchecked
         return Arrays.asList(
-            new MustHaveTagRuleBuilder()
+            new MustHaveTagRuleBuilder(),
+            new MustNotHaveTagRuleBuilder()
         );
     }
 }
