@@ -4,6 +4,7 @@ import com.opsbears.cscanner.core.CloudProvider;
 import com.opsbears.cscanner.core.HostDiscoveryCloudProvider;
 import com.opsbears.cscanner.firewall.FirewallCloudProvider;
 import com.opsbears.cscanner.objectstorage.ObjectStorageCloudProvider;
+import com.opsbears.cscanner.tags.TaggedResourceCloudProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -12,7 +13,9 @@ public class DigitalOceanCloudProvider implements
     CloudProvider<DigitalOceanConfiguration, DigitalOceanConnection>,
     HostDiscoveryCloudProvider<DigitalOceanConfiguration, DigitalOceanConnection>,
     ObjectStorageCloudProvider<DigitalOceanConfiguration, DigitalOceanConnection>,
-    FirewallCloudProvider<DigitalOceanConfiguration, DigitalOceanConnection> {
+    FirewallCloudProvider<DigitalOceanConfiguration, DigitalOceanConnection>,
+    TaggedResourceCloudProvider<DigitalOceanConfiguration, DigitalOceanConnection> {
+
     @Override
     public String getName() {
         return "digitalocean";

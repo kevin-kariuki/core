@@ -54,7 +54,8 @@ public class AWSConnection implements CloudProviderConnection, ObjectStorageConn
     public TaggedResourceClient getTaggedResourceClient() {
         return new AWSTaggedResourceClient(
             name,
-            awsConfiguration
+            awsConfiguration,
+            new AWSS3ClientSupplier(awsConfiguration)
         );
     }
 }

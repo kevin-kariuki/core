@@ -1,11 +1,12 @@
 package com.opsbears.cscanner.tags;
 
+import com.opsbears.cscanner.core.CScannerParameter;
+import com.opsbears.cscanner.core.EmptyListSupplier;
 import com.opsbears.cscanner.core.RuleResult;
 import com.opsbears.webcomponents.immutable.ImmutableArrayList;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,9 +16,9 @@ public class MustHaveTagRule implements TaggedResourceRule {
     public final static String MUST_HAVE_TAG = "MUST_HAVE_TAG";
 
     private final String tagName;
-    private final Set<TaggedResourceType> onlyTypes;
-    private final Set<Pattern> include;
-    private final Set<Pattern> exclude;
+    private final List<TaggedResourceType> onlyTypes;
+    private final List<Pattern> include;
+    private final List<Pattern> exclude;
 
     public MustHaveTagRule(
         Options options
@@ -68,17 +69,36 @@ public class MustHaveTagRule implements TaggedResourceRule {
         return newStream.collect(Collectors.toList());
     }
 
-    public class Options {
+    public static class Options {
         final String tagName;
-        final Set<TaggedResourceType> onlyTypes;
-        final Set<Pattern> include;
-        final Set<Pattern> exclude;
+        final List<TaggedResourceType> onlyTypes;
+        final List<Pattern> include;
+        final List<Pattern> exclude;
 
         public Options(
+            @CScannerParameter(
+                value = "tagName",
+                description = "Tag name to enforce."
+            )
             String tagName,
-            Set<TaggedResourceType> onlyTypes,
-            Set<Pattern> include,
-            Set<Pattern> exclude
+            @CScannerParameter(
+                value = "onlyTypes",
+                description = "Only check these types of resources.",
+                defaultSupplier = EmptyListSupplier.class
+            )
+            List<TaggedResourceType> onlyTypes,
+            @CScannerParameter(
+                value = "include",
+                description = "Include only the resources that match one of these patterns.",
+                defaultSupplier = EmptyListSupplier.class
+            )
+            List<Pattern> include,
+            @CScannerParameter(
+                value = "exclude",
+                description = "Exclude all resources whos names match one of these patterns.",
+                defaultSupplier = EmptyListSupplier.class
+            )
+            List<Pattern> exclude
         ) {
             this.tagName = tagName;
             this.onlyTypes = onlyTypes;

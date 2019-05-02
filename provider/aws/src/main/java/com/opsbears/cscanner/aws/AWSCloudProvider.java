@@ -4,6 +4,7 @@ import com.opsbears.cscanner.core.CloudProvider;
 import com.opsbears.cscanner.core.HostDiscoveryCloudProvider;
 import com.opsbears.cscanner.firewall.FirewallCloudProvider;
 import com.opsbears.cscanner.objectstorage.ObjectStorageCloudProvider;
+import com.opsbears.cscanner.tags.TaggedResourceCloudProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -12,7 +13,8 @@ public class AWSCloudProvider implements
     CloudProvider<AWSConfiguration, AWSConnection>,
     HostDiscoveryCloudProvider<AWSConfiguration, AWSConnection>,
     ObjectStorageCloudProvider<AWSConfiguration, AWSConnection>,
-    FirewallCloudProvider<AWSConfiguration, AWSConnection> {
+    FirewallCloudProvider<AWSConfiguration, AWSConnection>,
+    TaggedResourceCloudProvider<AWSConfiguration, AWSConnection> {
     @Override
     public String getName() {
         return "aws";

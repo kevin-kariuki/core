@@ -8,11 +8,13 @@ import com.opsbears.cscanner.firewall.FirewallConnection;
 import com.opsbears.cscanner.objectstorage.ObjectStorageClient;
 import com.opsbears.cscanner.objectstorage.ObjectStorageConnection;
 import com.opsbears.cscanner.objectstorage.S3ObjectStorageClient;
+import com.opsbears.cscanner.tags.TaggedResourceClient;
+import com.opsbears.cscanner.tags.TaggedResourceConnection;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class DigitalOceanConnection implements CloudProviderConnection, HostDiscoveryCloudProviderConnection, ObjectStorageConnection, FirewallConnection {
+public class DigitalOceanConnection implements CloudProviderConnection, HostDiscoveryCloudProviderConnection, ObjectStorageConnection, FirewallConnection, TaggedResourceConnection {
     private final String connectionName;
     private final DigitalOceanConfiguration configuration;
 
@@ -43,6 +45,14 @@ public class DigitalOceanConnection implements CloudProviderConnection, HostDisc
         return new DigitalOceanHostDiscoveryClient(
             connectionName,
             configuration
+        );
+    }
+
+    @Override
+    public TaggedResourceClient getTaggedResourceClient() {
+        return new DigitalOceanTaggedResourceClient(
+            connectionName,
+            new DigitalOceanS3ClientSupplier(configuration)
         );
     }
 }

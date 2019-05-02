@@ -8,11 +8,13 @@ import com.opsbears.cscanner.firewall.FirewallConnection;
 import com.opsbears.cscanner.objectstorage.ObjectStorageClient;
 import com.opsbears.cscanner.objectstorage.ObjectStorageConnection;
 import com.opsbears.cscanner.objectstorage.S3ObjectStorageClient;
+import com.opsbears.cscanner.tags.TaggedResourceClient;
+import com.opsbears.cscanner.tags.TaggedResourceConnection;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class ExoscaleConnection implements CloudProviderConnection, HostDiscoveryCloudProviderConnection, ObjectStorageConnection, FirewallConnection {
+public class ExoscaleConnection implements CloudProviderConnection, HostDiscoveryCloudProviderConnection, ObjectStorageConnection, FirewallConnection, TaggedResourceConnection {
     private final String name;
     private final ExoscaleConfiguration exoscaleConfiguration;
     private final ExoscaleFirewallClient exoscaleFirewallClient;
@@ -49,5 +51,10 @@ public class ExoscaleConnection implements CloudProviderConnection, HostDiscover
     @Override
     public HostDiscoveryClient getHostDiscoveryClient() {
         return new ExoscaleHostDiscoveryClient(name, exoscaleConfiguration);
+    }
+
+    @Override
+    public TaggedResourceClient getTaggedResourceClient() {
+        return new ExoscaleTaggedResourceClient(name, exoscaleConfiguration);
     }
 }

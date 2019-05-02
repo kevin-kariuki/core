@@ -18,9 +18,15 @@
         </packages>
     </test>
 
-    <test name="S3">
+    <test name="ObjectStorage">
         <packages>
             <package name="com.opsbears.cscanner.objectstorage" />
+        </packages>
+    </test>
+
+    <test name="Tags">
+        <packages>
+            <package name="com.opsbears.cscanner.tags" />
         </packages>
     </test>
 </suite>
