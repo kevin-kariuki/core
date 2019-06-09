@@ -43,9 +43,13 @@ public class ExoscaleHostDiscoveryClient implements HostDiscoveryClient {
         ApacheCloudStackRequest apacheCloudStackRequest = new ApacheCloudStackRequest("listVirtualMachines");
         String response = apacheCloudStackClient.executeRequest(apacheCloudStackRequest);
         JsonObject responseObject = new Gson().fromJson(response, JsonObject.class);
-        JsonArray vmList = responseObject
+        JsonObject vmResponse = responseObject
             .get("listvirtualmachinesresponse")
-            .getAsJsonObject()
+            .getAsJsonObject();
+        if (!vmResponse.has("virtualmachine")) {
+            return Stream.empty();
+        }
+        JsonArray vmList = vmResponse
             .get("virtualmachine")
             .getAsJsonArray();
 
