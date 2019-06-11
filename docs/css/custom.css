@@ -33,9 +33,15 @@ html .rst-content .note {
     font-weight: normal;
     border-radius:3px;
     font-family:sans-serif;
-    height:21px;
+    height:16px;
+    line-height:16px;
     font-size: 0;
     position:relative;
+    top:-2px;
+}
+
+h1 .since {
+    height:21px;
     top:-5px;
 }
 
@@ -43,13 +49,16 @@ html .rst-content .note {
     background-color:#555;
     color: #fff;
     display: inline-block;
-    height:21px;
-    padding:3px;
+    height:16px;
     font-size:12px;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
-    padding-left:5px;
-    padding-right:5px;
+    padding: 0 5px;
+}
+
+h1 .since__text {
+    height:21px;
+    padding:3px 5px;
 }
 
 .side__hide {
@@ -60,11 +69,14 @@ html .rst-content .note {
     background-color:#4c1;
     color:#fff;
     display: inline-block;
-    height:21px;
-    padding:3px;
-    padding-left:5px;
-    padding-right:5px;
+    height:16px;
+    padding: 0 5px;
     font-size:12px;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
+}
+
+h1 .since__value {
+    height:21px;
+    padding: 3px 5px;
 }
