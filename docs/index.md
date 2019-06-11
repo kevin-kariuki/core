@@ -54,6 +54,7 @@ For detailed configuration options see [Configuration](configuration.md).
 Currently the following cloud providers are supported:
 
 - [Amazon Web Services](providers/aws.md)
+- [Azure](providers/azure.md) {{ since("0.0.8") }}
 - [DigitalOcean](providers/digitalocean.md) {{ since("0.0.6") }}
 - [Exoscale](providers/exoscale.md)
 

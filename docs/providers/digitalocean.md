@@ -19,6 +19,12 @@ connection-name:
 The `apiToken` is used to interact with the regular API, while `spacesKey` and `spacesSecret` are used to interact with
 the object storage called "spaces".
 
+## Creating credentials
+
+In order to create an API token log on to the [DigitalOcean dashboard](https://cloud.digitalocean.com/) and go to
+the [API section](https://cloud.digitalocean.com/account/api/tokens). Here you can create both an API token and a spaces
+key and secret.
+
 ## Rules
 
 The DO provider currently supports the following rules:

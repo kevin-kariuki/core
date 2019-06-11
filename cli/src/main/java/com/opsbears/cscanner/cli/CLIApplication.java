@@ -1,6 +1,7 @@
 package com.opsbears.cscanner.cli;
 
 import com.opsbears.cscanner.aws.AWSPlugin;
+import com.opsbears.cscanner.azure.AzurePlugin;
 import com.opsbears.cscanner.core.RuleResult;
 import com.opsbears.cscanner.core.ScannerCore;
 import com.opsbears.cscanner.exoscale.ExoscalePlugin;
@@ -124,6 +125,7 @@ public class CLIApplication {
             new ObjectStoragePlugin(),
             new FirewallPlugin(),
             new AWSPlugin(),
+            new AzurePlugin(),
             new ExoscalePlugin()
         ));
 
