@@ -3,7 +3,6 @@ package com.opsbears.cscanner.azure;
 import com.opsbears.cscanner.core.CloudProvider;
 import com.opsbears.cscanner.core.HostDiscoveryCloudProvider;
 import com.opsbears.cscanner.firewall.FirewallCloudProvider;
-import com.opsbears.cscanner.objectstorage.ObjectStorageCloudProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -11,7 +10,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class AzureCloudProvider implements
     CloudProvider<AzureConfiguration, AzureConnection>,
     HostDiscoveryCloudProvider<AzureConfiguration, AzureConnection>,
-    ObjectStorageCloudProvider<AzureConfiguration, AzureConnection>,
     FirewallCloudProvider<AzureConfiguration, AzureConnection> {
 
     @Override
