@@ -36,6 +36,7 @@ nav:
 - 'Configuration': 'configuration.md'
 - 'Cloud providers':
   - 'Amazon Web Services': 'providers/aws.md'
+  - 'Azure': 'providers/azure.md'
   - 'DigitalOcean': 'providers/digitalocean.md'
   - 'Exoscale': 'providers/exoscale.md'
 - 'Rules':
