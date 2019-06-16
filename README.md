@@ -22,8 +22,6 @@
 
 » [Join the Discord](https://pasztor.at/discord)
 
-» [Support on Patreon](https://pasztor.at/patreon)
-
 ## A brief introduction
 
 This utility is intended to check your cloud configuration for compliance with your companies rules in an automated
