@@ -1,5 +1,5 @@
 ---
-name: Include a cloud provider
+name: Cloud provider
 about: Request the inclusion of a cloud provider
 title: ''
 labels: provider
