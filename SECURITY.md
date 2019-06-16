@@ -6,7 +6,9 @@ Cscanner follows the concept of [semantic versioning](https://semver.org/). As s
 
 ## Reporting a Vulnerability
 
-Vulnerabilities should be reported via e-mail to security@cscanner.io, which is hosted on ProtonMail. Our PGP key is the following:
+Vulnerabilities should be reported via e-mail to security@cscanner.io, which is hosted on ProtonMail. We will get back to you within 7 calendar days at most, and the fix will be released as soon as possible, but not later than 90 days after the initial report with full credits to you. Unfortunately at this time we are not able to offer a reward/bug bounty.
+
+Our PGP key is the following:
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
