@@ -4,14 +4,12 @@ about: Report a crash with a stack trace
 title: ''
 labels: bug
 assignees: janoszen
-
 ---
 
 # Crash report
 
-|---------------------|----------------------------|
-| **Cloud provider:** | N/A                        |
-| **Rule:**           | N/A                        |
+- **Cloud provider:**
+- **Rule:**
 
 ## Stack trace
 
