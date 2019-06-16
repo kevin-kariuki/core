@@ -1,11 +1,13 @@
 ---
+name: Crash
+about: Report a crash with a stack trace
+title: ''
 labels: bug
 assignees: janoszen
+
 ---
 
 # Crash report
-
-This is a crash report of cscanner with a stack trace.
 
 |---------------------|----------------------------|
 | **Cloud provider:** | N/A                        |
