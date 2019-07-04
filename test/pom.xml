@@ -44,6 +44,12 @@
         </dependency>
         <dependency>
             <groupId>com.opsbears.cscanner</groupId>
+            <artifactId>azure</artifactId>
+            <version>master-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.opsbears.cscanner</groupId>
             <artifactId>aws</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>

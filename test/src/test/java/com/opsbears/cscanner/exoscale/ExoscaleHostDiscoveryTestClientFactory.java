@@ -4,20 +4,15 @@ import com.opsbears.cscanner.core.*;
 import com.opsbears.cscanner.test.TestConfigurationLoader;
 import com.opsbears.cscanner.test.TestPlugin;
 
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
 @ParametersAreNonnullByDefault
 public class ExoscaleHostDiscoveryTestClientFactory implements HostDiscoveryTestClientFactory {
-    @Nullable
-    private static final String apiKey;
-    @Nullable
-    private static final String apiSecret;
+    private final ExoscaleConfiguration exoscaleConfiguration;
 
-    static {
-        apiKey = System.getenv("EXOSCALE_KEY");
-        apiSecret = System.getenv("EXOSCALE_SECRET");
+    public ExoscaleHostDiscoveryTestClientFactory(ExoscaleConfiguration exoscaleConfiguration) {
+        this.exoscaleConfiguration = exoscaleConfiguration;
     }
 
     @Override
@@ -25,8 +20,8 @@ public class ExoscaleHostDiscoveryTestClientFactory implements HostDiscoveryTest
         return rules -> {
             Map<String, ConnectionConfiguration> connections = new HashMap<>();
             Map<String, Object> options = new HashMap<>();
-            options.put("key", apiKey);
-            options.put("secret", apiSecret);
+            options.put("key", exoscaleConfiguration.key);
+            options.put("secret", exoscaleConfiguration.secret);
             connections.put("exo", new ConnectionConfiguration(
                 "exoscale",
                 options
@@ -49,11 +44,6 @@ public class ExoscaleHostDiscoveryTestClientFactory implements HostDiscoveryTest
 
     @Override
     public boolean isConfigured() {
-        return apiKey != null && apiSecret != null;
-    }
-
-    @Override
-    public HostDiscoveryTestClient get() {
-        return new ExoscaleHostDiscoveryTestClient(apiKey, apiSecret);
+        return exoscaleConfiguration.key != null;
     }
 }

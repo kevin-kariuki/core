@@ -6,7 +6,6 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2ClientBuilder;
 import com.amazonaws.services.ec2.model.*;
-import com.opsbears.cscanner.core.HostDiscoveryTestClient;
 import com.opsbears.webcomponents.net.IPAddress;
 
 import javax.annotation.ParametersAreNonnullByDefault;

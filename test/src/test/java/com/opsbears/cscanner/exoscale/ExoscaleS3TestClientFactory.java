@@ -16,31 +16,16 @@ import java.util.*;
 
 @ParametersAreNonnullByDefault
 public class ExoscaleS3TestClientFactory implements ObjectStorageTestClientSupplier {
-    @Nullable
-    private static final String apiKey;
-    @Nullable
-    private static final String apiSecret;
-    private static final ExoscaleConfiguration exoscaleConfiguration;
+    private final ExoscaleConfiguration exoscaleConfiguration;
 
-    static {
-        apiKey = System.getenv("EXOSCALE_KEY");
-        apiSecret = System.getenv("EXOSCALE_SECRET");
-        if (apiKey != null && apiSecret != null) {
-            exoscaleConfiguration =
-                new ExoscaleConfiguration(
-                    apiKey,
-                    apiSecret,
-                    null,
-                    null
-            );
-        } else {
-            exoscaleConfiguration = null;
-        }
+    public ExoscaleS3TestClientFactory(ExoscaleConfiguration exoscaleConfiguration) {
+        this.exoscaleConfiguration = exoscaleConfiguration;
     }
+
 
     @Override
     public boolean isConfigured() {
-        return apiKey != null && apiSecret != null;
+        return exoscaleConfiguration.key != null;
     }
 
     @Override
@@ -58,8 +43,8 @@ public class ExoscaleS3TestClientFactory implements ObjectStorageTestClientSuppl
         return rules -> {
             Map<String, ConnectionConfiguration> connections = new HashMap<>();
             Map<String, Object> options = new HashMap<>();
-            options.put("key", apiKey);
-            options.put("secret", apiSecret);
+            options.put("key", exoscaleConfiguration.key);
+            options.put("secret", exoscaleConfiguration.secret);
             connections.put("exo", new ConnectionConfiguration(
                 "exoscale",
                 options

@@ -1,9 +1,6 @@
 package com.opsbears.cscanner.digitalocean;
 
 import com.opsbears.cscanner.core.*;
-import com.opsbears.cscanner.exoscale.ExoscaleHostDiscoveryTestClient;
-import com.opsbears.cscanner.exoscale.ExoscalePlugin;
-import com.opsbears.cscanner.firewall.FirewallPlugin;
 import com.opsbears.cscanner.test.TestConfigurationLoader;
 import com.opsbears.cscanner.test.TestPlugin;
 
@@ -14,10 +11,10 @@ import java.util.*;
 @ParametersAreNonnullByDefault
 public class DigitalOceanHostDiscoveryTestClientFactory implements HostDiscoveryTestClientFactory {
     @Nullable
-    private static final String apiToken;
+    private final String apiToken;
 
-    static {
-        apiToken = System.getenv("DIGITALOCEAN_TOKEN");
+    public DigitalOceanHostDiscoveryTestClientFactory(@Nullable String apiToken) {
+        this.apiToken = apiToken;
     }
 
     @Override
@@ -49,10 +46,5 @@ public class DigitalOceanHostDiscoveryTestClientFactory implements HostDiscovery
     @Override
     public boolean isConfigured() {
         return apiToken != null;
-    }
-
-    @Override
-    public HostDiscoveryTestClient get() {
-        return new DigitalOceanHostDiscoveryTestClient(apiToken);
     }
 }

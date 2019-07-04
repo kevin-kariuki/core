@@ -20,5 +20,7 @@ variable "digitalocean_spaces_key" {
 }
 variable "digitalocean_spaces_secret" {
 }
-variable "exoscale_key" {}
-variable "exoscale_secret" {}
+variable "exoscale_key" {
+}
+variable "exoscale_secret" {
+}

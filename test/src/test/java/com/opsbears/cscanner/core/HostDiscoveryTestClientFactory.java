@@ -4,7 +4,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
 
 @ParametersAreNonnullByDefault
-public interface HostDiscoveryTestClientFactory extends Supplier<HostDiscoveryTestClient> {
+public interface HostDiscoveryTestClientFactory {
     ScannerCoreFactory getScannerCore();
     boolean isConfigured();
 }
