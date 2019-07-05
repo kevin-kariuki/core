@@ -42,13 +42,6 @@ jobs:
         root: /tmp/project
         paths:
         - "*/target/*.jar"
-  deploy-docs:
-    <<: *defaults
-    steps:
-      - add_ssh_keys:
-      - checkout
-      - run: pip3 install -r requirements.txt
-      - run: mkdocs gh-deploy
   deploy-branch:
     <<: *defaults
     steps:
@@ -103,10 +96,3 @@ workflows:
             ignore: /.*/
           tags:
             ignore: /.*-SNAPSHOT/
-    - deploy-docs:
-        context: cscanner
-        filters:
-          branches:
-            only: master
-          tags:
-            ignore: /.*/
