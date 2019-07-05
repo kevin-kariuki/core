@@ -1,6 +1,6 @@
 package io.cscanner.core.rule.firewall;
 
-import io.cscanner.core.engine.*;
+import io.cscanner.core.test.engine.*;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;

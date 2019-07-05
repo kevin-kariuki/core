@@ -7,8 +7,8 @@ import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
 import com.amazonaws.services.securitytoken.model.GetCallerIdentityRequest;
 import com.amazonaws.services.securitytoken.model.GetCallerIdentityResult;
-import io.cscanner.core.engine.CScannerParameter;
-import io.cscanner.core.engine.NullSupplier;
+import io.cscanner.core.test.engine.CScannerParameter;
+import io.cscanner.core.test.engine.NullSupplier;
 
 import javax.annotation.Nullable;
 

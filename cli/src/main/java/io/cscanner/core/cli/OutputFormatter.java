@@ -1,6 +1,6 @@
 package io.cscanner.core.cli;
 
-import io.cscanner.core.engine.RuleResult;
+import io.cscanner.core.test.engine.RuleResult;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;

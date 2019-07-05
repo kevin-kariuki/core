@@ -8,7 +8,7 @@
     <version>master-SNAPSHOT</version>
     <name>Abstract parent package</name>
     <description>Parent package for CScanner packages. Do not use as dependency.</description>
-    <url>https://github.com/opsbears/cscanner</url>
+    <url>https://github.com/cscannerio/core</url>
     <packaging>pom</packaging>
 
     <properties>
@@ -19,7 +19,7 @@
 
     <modules>
         <module>cli</module>
-        <module>core</module>
+        <module>engine</module>
         <module>config/yaml</module>
         <module>provider/aws</module>
         <module>provider/azure</module>
@@ -46,13 +46,13 @@
     </developers>
 
     <issueManagement>
-        <url>https://github.com/opsbears/cscanner/issues</url>
+        <url>https://github.com/cscannerio/engine/issues</url>
     </issueManagement>
 
     <scm>
-        <url>https://github.com/opsbears/cscanner</url>
-        <connection>scm:git:https://github.com/opsbears/cscanner.git</connection>
-        <developerConnection>scm:git:git@github.com:opsbears/cscanner.git</developerConnection>
+        <url>https://github.com/cscannerio/engine</url>
+        <connection>scm:git:https://github.com/cscannerio/engine.git</connection>
+        <developerConnection>scm:git:git@github.com:cscannerio/engine.git</developerConnection>
     </scm>
 
     <dependencies>

@@ -5,8 +5,8 @@ import com.myjeeva.digitalocean.exception.DigitalOceanException;
 import com.myjeeva.digitalocean.exception.RequestUnsuccessfulException;
 import com.myjeeva.digitalocean.impl.DigitalOceanClient;
 import com.myjeeva.digitalocean.pojo.*;
-import io.cscanner.core.engine.HostDiscoveryClient;
-import io.cscanner.core.engine.HostDiscoveryRecord;
+import io.cscanner.core.test.engine.HostDiscoveryClient;
+import io.cscanner.core.test.engine.HostDiscoveryRecord;
 import com.opsbears.webcomponents.net.IPAddress;
 
 import javax.annotation.ParametersAreNonnullByDefault;

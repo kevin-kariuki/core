@@ -1,6 +1,6 @@
 package io.cscanner.core.rule.objectstorage;
 
-import io.cscanner.core.engine.CloudProviderConnection;
+import io.cscanner.core.test.engine.CloudProviderConnection;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

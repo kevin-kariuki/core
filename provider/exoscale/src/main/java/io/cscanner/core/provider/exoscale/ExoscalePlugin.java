@@ -1,7 +1,7 @@
 package io.cscanner.core.provider.exoscale;
 
-import io.cscanner.core.engine.CloudProvider;
-import io.cscanner.core.engine.Plugin;
+import io.cscanner.core.test.engine.CloudProvider;
+import io.cscanner.core.test.engine.Plugin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;

@@ -1,7 +1,7 @@
 package io.cscanner.core.provider.exoscale;
 
-import io.cscanner.core.engine.CScannerParameter;
-import io.cscanner.core.engine.NullSupplier;
+import io.cscanner.core.test.engine.CScannerParameter;
+import io.cscanner.core.test.engine.NullSupplier;
 
 import javax.annotation.Nullable;
 

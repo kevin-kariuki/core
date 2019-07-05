@@ -1,26 +1,24 @@
 # CScanner: A Cloud Security Scanner
 
 [![Documentation](https://img.shields.io/badge/documentation-available-green.svg)](https://cscanner.io)
-[![GitHub Releases](https://img.shields.io/github/release/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner/releases)
-[![Code Quality](https://img.shields.io/lgtm/grade/java/g/janoszen/cscanner.svg)](https://lgtm.com/projects/g/janoszen/cscanner/)
-[![GitHub](https://img.shields.io/github/license/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner/blob/master/LICENSE)
+[![GitHub Releases](https://img.shields.io/github/release/cscannerio/core.svg)](https://github.com/cscannerio/core/releases)
+[![Code Quality](https://img.shields.io/lgtm/grade/java/g/cscannerio/core.svg)](https://lgtm.com/projects/g/cscannerio/core/)
+[![GitHub](https://img.shields.io/github/license/cscannerio/core.svg)](https://github.com/cscannerio/core/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/413306353545773069.svg)](https://pasztor.at/discord)
-[![CircleCI](https://img.shields.io/circleci/project/github/janoszen/cscanner.svg)](https://circleci.com/gh/janoszen/cscanner)
-[![GitHub last commit](https://img.shields.io/github/last-commit/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner)
-[![GitHub top language](https://img.shields.io/github/languages/top/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner)
-[![GitHub repo size](https://img.shields.io/github/repo-size/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner)
-[![GitHub issues](https://img.shields.io/github/issues/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/janoszen/cscanner.svg)](https://github.com/janoszen/cscanner/pulls)
-[![GitHub stars](https://img.shields.io/github/stars/janoszen/cscanner.svg?style=social)](https://github.com/janoszen/cscanner)
+[![CircleCI](https://img.shields.io/circleci/project/github/cscannerio/core.svg)](https://circleci.com/gh/cscannerio/core)
+[![GitHub last commit](https://img.shields.io/github/last-commit/cscannerio/core.svg)](https://github.com/cscannerio/core)
+[![GitHub top language](https://img.shields.io/github/languages/top/cscannerio/core.svg)](https://github.com/cscannerio/core)
+[![GitHub repo size](https://img.shields.io/github/repo-size/cscannerio/core.svg)](https://github.com/cscannerio/core)
+[![GitHub issues](https://img.shields.io/github/issues/cscannerio/core.svg)](https://github.com/cscannerio/core/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/cscannerio/core.svg)](https://github.com/cscannerio/core/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/cscannerio/core.svg?style=social)](https://github.com/cscannerio/core)
 [![Twitter Follow](https://img.shields.io/twitter/follow/cscannerio.svg?style=social)](https://twitter.com/cscannerio)
 
 ## Things to do
 
-» [Grab the latest release](https://github.com/janoszen/cscanner/releases)
+» [Grab the latest release](https://github.com/cscannerio/core/releases)
 
 » [Read the documentation](https://cscanner.io)
-
-» [Join the Discord](https://pasztor.at/discord)
 
 ## A brief introduction
 
@@ -45,7 +43,7 @@ are compliant or are violating the rules.
 
 ## Downloading
 
-You can grab [one of the releases](https://github.com/janoszen/cscanner/releases) from GitHub.
+You can grab [one of the releases](https://github.com/cscannerio/core/releases) from GitHub.
 
 ## Running
 

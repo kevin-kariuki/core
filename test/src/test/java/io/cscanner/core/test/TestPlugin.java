@@ -1,7 +1,7 @@
 package io.cscanner.core.test;
 
-import io.cscanner.core.engine.ConfigLoader;
-import io.cscanner.core.engine.Plugin;
+import io.cscanner.core.test.engine.ConfigLoader;
+import io.cscanner.core.test.engine.Plugin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;

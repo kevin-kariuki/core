@@ -1,7 +1,7 @@
 package io.cscanner.core.provider.azure;
 
-import io.cscanner.core.engine.CloudProvider;
-import io.cscanner.core.engine.HostDiscoveryCloudProvider;
+import io.cscanner.core.test.engine.CloudProvider;
+import io.cscanner.core.test.engine.HostDiscoveryCloudProvider;
 import io.cscanner.core.rule.firewall.FirewallCloudProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;

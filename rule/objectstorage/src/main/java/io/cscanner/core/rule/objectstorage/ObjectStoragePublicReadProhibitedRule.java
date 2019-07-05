@@ -1,9 +1,9 @@
 package io.cscanner.core.rule.objectstorage;
 
-import io.cscanner.core.engine.CScannerParameter;
-import io.cscanner.core.engine.EmptyListSupplier;
-import io.cscanner.core.engine.FalseSupplier;
-import io.cscanner.core.engine.RuleResult;
+import io.cscanner.core.test.engine.CScannerParameter;
+import io.cscanner.core.test.engine.EmptyListSupplier;
+import io.cscanner.core.test.engine.FalseSupplier;
+import io.cscanner.core.test.engine.RuleResult;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;

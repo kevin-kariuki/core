@@ -4,9 +4,9 @@ import com.microsoft.azure.AzureEnvironment;
 import com.microsoft.azure.credentials.ApplicationTokenCredentials;
 import com.microsoft.azure.management.Azure;
 import com.microsoft.rest.LogLevel;
-import io.cscanner.core.engine.CloudProviderConnection;
-import io.cscanner.core.engine.HostDiscoveryClient;
-import io.cscanner.core.engine.HostDiscoveryCloudProviderConnection;
+import io.cscanner.core.test.engine.CloudProviderConnection;
+import io.cscanner.core.test.engine.HostDiscoveryClient;
+import io.cscanner.core.test.engine.HostDiscoveryCloudProviderConnection;
 import io.cscanner.core.rule.firewall.FirewallClient;
 import io.cscanner.core.rule.firewall.FirewallConnection;
 

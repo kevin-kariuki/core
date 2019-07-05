@@ -1,7 +1,7 @@
 package io.cscanner.core.rule.objectstorage;
 
-import io.cscanner.core.engine.Plugin;
-import io.cscanner.core.engine.RuleBuilder;
+import io.cscanner.core.test.engine.Plugin;
+import io.cscanner.core.test.engine.RuleBuilder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;

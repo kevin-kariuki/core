@@ -3,8 +3,8 @@ package io.cscanner.core.provider.azure;
 import com.microsoft.azure.PagedList;
 import com.microsoft.azure.management.Azure;
 import com.microsoft.azure.management.compute.VirtualMachine;
-import io.cscanner.core.engine.HostDiscoveryClient;
-import io.cscanner.core.engine.HostDiscoveryRecord;
+import io.cscanner.core.test.engine.HostDiscoveryClient;
+import io.cscanner.core.test.engine.HostDiscoveryRecord;
 import com.opsbears.webcomponents.net.IPAddress;
 
 import javax.annotation.ParametersAreNonnullByDefault;

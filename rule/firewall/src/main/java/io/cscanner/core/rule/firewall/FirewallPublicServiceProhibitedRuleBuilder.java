@@ -1,6 +1,6 @@
 package io.cscanner.core.rule.firewall;
 
-import io.cscanner.core.engine.RuleBuilder;
+import io.cscanner.core.test.engine.RuleBuilder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

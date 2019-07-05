@@ -1,8 +1,8 @@
 package io.cscanner.core.provider.azure;
 
-import io.cscanner.core.engine.CScannerParameter;
-import io.cscanner.core.engine.NoDefaultSupplier;
-import io.cscanner.core.engine.NullSupplier;
+import io.cscanner.core.test.engine.CScannerParameter;
+import io.cscanner.core.test.engine.NoDefaultSupplier;
+import io.cscanner.core.test.engine.NullSupplier;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;

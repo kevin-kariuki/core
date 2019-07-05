@@ -1,8 +1,8 @@
 package io.cscanner.core.config.yaml;
 
-import io.cscanner.core.engine.ConfigLoader;
-import io.cscanner.core.engine.ConnectionConfiguration;
-import io.cscanner.core.engine.RuleConfiguration;
+import io.cscanner.core.test.engine.ConfigLoader;
+import io.cscanner.core.test.engine.ConnectionConfiguration;
+import io.cscanner.core.test.engine.RuleConfiguration;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.parser.ParserException;
 

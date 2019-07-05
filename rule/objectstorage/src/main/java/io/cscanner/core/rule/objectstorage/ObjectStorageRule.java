@@ -1,6 +1,6 @@
 package io.cscanner.core.rule.objectstorage;
 
-import io.cscanner.core.engine.Rule;
+import io.cscanner.core.test.engine.Rule;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

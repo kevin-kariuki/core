@@ -2,8 +2,8 @@ package io.cscanner.core.cli;
 
 import io.cscanner.core.provider.aws.AWSPlugin;
 import io.cscanner.core.provider.azure.AzurePlugin;
-import io.cscanner.core.engine.RuleResult;
-import io.cscanner.core.engine.ScannerCore;
+import io.cscanner.core.test.engine.RuleResult;
+import io.cscanner.core.test.engine.ScannerCore;
 import io.cscanner.core.provider.exoscale.ExoscalePlugin;
 import io.cscanner.core.rule.firewall.FirewallPlugin;
 import io.cscanner.core.rule.objectstorage.ObjectStoragePlugin;

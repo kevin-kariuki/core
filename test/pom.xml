@@ -45,6 +45,12 @@
         </dependency>
         <dependency>
             <groupId>io.cscanner.core.provider</groupId>
+            <artifactId>azure</artifactId>
+            <version>master-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cscanner.core.provider</groupId>
             <artifactId>aws</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>

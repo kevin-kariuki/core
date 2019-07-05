@@ -1,8 +1,8 @@
 package io.cscanner.core.provider.exoscale;
 
-import io.cscanner.core.engine.CloudProviderConnection;
-import io.cscanner.core.engine.HostDiscoveryClient;
-import io.cscanner.core.engine.HostDiscoveryCloudProviderConnection;
+import io.cscanner.core.test.engine.CloudProviderConnection;
+import io.cscanner.core.test.engine.HostDiscoveryClient;
+import io.cscanner.core.test.engine.HostDiscoveryCloudProviderConnection;
 import io.cscanner.core.rule.firewall.FirewallClient;
 import io.cscanner.core.rule.firewall.FirewallConnection;
 import io.cscanner.core.rule.objectstorage.ObjectStorageClient;
