@@ -4,17 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.opsbears.cscanner</groupId>
-        <artifactId>parent</artifactId>
+        <groupId>io.cscanner</groupId>
+        <artifactId>core</artifactId>
         <version>master-SNAPSHOT</version>
     </parent>
+    <groupId>io.cscanner.core</groupId>
     <artifactId>test</artifactId>
     <name>Integration tests for CScanner</name>
     <description>Live fire tests for cscanner</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner</groupId>
             <artifactId>core</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
@@ -25,31 +26,31 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.rule</groupId>
             <artifactId>objectstorage</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.rule</groupId>
             <artifactId>firewall</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.provider</groupId>
             <artifactId>exoscale</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.provider</groupId>
             <artifactId>aws</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.provider</groupId>
             <artifactId>digitalocean</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>test</scope>

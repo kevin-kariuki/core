@@ -3,30 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>parent</artifactId>
-        <groupId>com.opsbears.cscanner</groupId>
+        <artifactId>core</artifactId>
+        <groupId>io.cscanner</groupId>
         <version>master-SNAPSHOT</version>
         <relativePath>../../</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <groupId>io.cscanner.core.provider</groupId>
     <artifactId>azure</artifactId>
     <name>Azure for CScanner</name>
     <description>Azyre bindings for CScanner</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner</groupId>
             <artifactId>core</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.rule</groupId>
             <artifactId>objectstorage</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.rule</groupId>
             <artifactId>firewall</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>compile</scope>

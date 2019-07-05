@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.opsbears.cscanner</groupId>
-    <artifactId>parent</artifactId>
+    <groupId>io.cscanner</groupId>
+    <artifactId>core</artifactId>
     <version>master-SNAPSHOT</version>
     <name>Abstract parent package</name>
     <description>Parent package for CScanner packages. Do not use as dependency.</description>

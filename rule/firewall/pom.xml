@@ -4,19 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>parent</artifactId>
-        <groupId>com.opsbears.cscanner</groupId>
+        <artifactId>core</artifactId>
+        <groupId>io.cscanner</groupId>
         <version>master-SNAPSHOT</version>
         <relativePath>../../</relativePath>
     </parent>
+    <groupId>io.cscanner.core.rule</groupId>
     <artifactId>firewall</artifactId>
     <name>IAAS bindings for CScanner</name>
     <description>IAAS libraries for CScanner</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
-            <artifactId>core</artifactId>
+            <groupId>io.cscanner.core</groupId>
+            <artifactId>engine</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
     </dependencies>

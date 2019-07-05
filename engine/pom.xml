@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.cscanner</groupId>
+        <artifactId>core</artifactId>
+        <version>master-SNAPSHOT</version>
+    </parent>
+    <groupId>io.cscanner.core</groupId>
+    <artifactId>engine</artifactId>
+    <name>CScanner Core</name>
+    <description>Core libraries for CScanner</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.opsbears.webcomponents</groupId>
+            <artifactId>typeconverter</artifactId>
+            <version>1.0.0-alpha13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opsbears.webcomponents.typeconverter</groupId>
+            <artifactId>builtin</artifactId>
+            <version>1.0.0-alpha13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opsbears.webcomponents</groupId>
+            <artifactId>net</artifactId>
+            <version>1.0.0-alpha13</version>
+        </dependency>
+    </dependencies>
+</project>

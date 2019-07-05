@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>parent</artifactId>
-        <groupId>com.opsbears.cscanner</groupId>
+        <artifactId>core</artifactId>
+        <groupId>io.cscanner</groupId>
         <version>master-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -19,22 +19,22 @@
             <version>0.8.1</version>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner</groupId>
             <artifactId>core</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.config</groupId>
             <artifactId>yaml</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.provider</groupId>
             <artifactId>aws</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.provider</groupId>
             <artifactId>exoscale</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
@@ -49,7 +49,7 @@
             <version>1.7.26</version>
         </dependency>
         <dependency>
-            <groupId>com.opsbears.cscanner</groupId>
+            <groupId>io.cscanner.core.provider</groupId>
             <artifactId>azure</artifactId>
             <version>master-SNAPSHOT</version>
             <scope>compile</scope>
@@ -68,7 +68,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.opsbears.cscanner.cli.CLIApplication</mainClass>
+                            <mainClass>io.cscanner.core.cli.CLIApplication</mainClass>
                         </manifest>
                     </archive>
 

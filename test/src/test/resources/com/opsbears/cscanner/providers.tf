@@ -6,7 +6,7 @@ module "aws" {
 }
 
 module "azure" {
-  source = "./azure"
+  source = "..\/..\/..\/io\/cscanner\/core\/provider\/azure"
   arm_client_id = "${var.arm_client_id}"
   arm_client_secret = "${var.arm_client_secret}"
   arm_subscription_id = "${var.arm_subscription_id}"
